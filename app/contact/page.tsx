@@ -34,7 +34,7 @@ export default function ContactPage() {
         Get in Touch
       </motion.h1>
       <p className="text-lg text-white/80 mt-2 text-center">
-        We'd love to hear from you! Reach out to us anytime.
+        We&apos;d love to hear from you! Reach out to us anytime.
       </p>
 
       {/* Contact Info */}
@@ -45,7 +45,7 @@ export default function ContactPage() {
         className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl"
       >
         {/* Address */}
-        <div className="flex flex-col items-center bg-black bg-opacity-10 p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
+        <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaMapMarkerAlt className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Our Address</h3>
           <p className="text-white/80 text-center mt-2">
@@ -54,7 +54,7 @@ export default function ContactPage() {
         </div>
 
         {/* Phone */}
-        <div className="flex flex-col items-center bg-black bg-opacity-10 p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
+        <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaPhoneAlt className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Call Us</h3>
           <a
@@ -66,7 +66,7 @@ export default function ContactPage() {
         </div>
 
         {/* Email */}
-        <div className="flex flex-col items-center bg-black bg-opacity-10 p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
+        <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaEnvelope className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Email Us</h3>
           <p className="text-white/80 mt-2">info@rkcreation.com</p>
@@ -98,7 +98,7 @@ export default function ContactPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
         onSubmit={handleSMS}
-        className="mt-12 w-full max-w-3xl bg-black bg-opacity-10 p-8 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md"
+        className="mt-12 w-full max-w-3xl bg-black p-8 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md"
       >
         <h2 className="text-3xl font-bold text-center">Send a Message via SMS</h2>
         <p className="text-white/80 text-center mt-2">
@@ -136,7 +136,7 @@ export default function ContactPage() {
         </button>
       </motion.form>
 
-      {/* Google Map Embed (Fixed Issue) */}
+      {/* Google Map Embed */}
       <div className="mt-12 w-full max-w-4xl h-64 rounded-2xl overflow-hidden shadow-lg">
         <iframe
           className="w-full h-full border-none"

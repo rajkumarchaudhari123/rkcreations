@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
+
 import { motion } from 'framer-motion';
-import { FaFilm, FaVectorSquare, FaObjectGroup } from 'react-icons/fa';
+import { FaFilm, FaObjectGroup } from 'react-icons/fa';
 import Link from 'next/link';
 import { FaLaptopCode, FaBullhorn, FaPaintBrush, FaMobileAlt, FaCheckCircle, FaPhotoVideo } from 'react-icons/fa';
 
