@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <div className="relative min-h-screen bg-[#bdd4e7] bg-gradient-to-br from-[#bdd4e7] to-[#8693ab] text-white flex flex-col items-center px-6 py-12 font-sans overflow-hidden">
+    <div className="relative min-h-screen bg-[#bdd4e7] bg-gradient-to-br from-[#bdd4e7] to-[#8693ab] text-white flex flex-col mt-2.5 items-center px-6 py-12 font-sans overflow-hidden">
       {/* Floating Glass Card */}
       <motion.div 
         initial={{ opacity: 0, y: -50 }} 
@@ -13,7 +13,7 @@ export default function AboutPage() {
         transition={{ duration: 0.8 }}
         className="relative z-10 text-center max-w-5xl bg-black bg-opacity-80 backdrop-blur-md p-12 rounded-3xl shadow-xl border border-white/20"
       >
-        <h1 className="text-6xl font-extrabold bg-gradient-to-r from-[#ff512f] to-[#dd2476] text-transparent bg-clip-text">
+        <h1 className="text-6xl font-extrabold  bg-gradient-to-r from-[#ff512f] to-[#dd2476] text-transparent bg-clip-text">
           About RK Creation
         </h1>
         <p className="mt-4 text-lg text-gray-300">

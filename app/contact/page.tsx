@@ -23,7 +23,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="relative min-h-screen mt-5 flex flex-col items-center px-6 py-12 font-sans text-white">
+    <div className="relative  mt-5 flex flex-col items-center px-6 py-12 font-sans text-white">
       {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
