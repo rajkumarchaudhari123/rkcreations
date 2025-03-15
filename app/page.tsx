@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCode, FaPaintBrush, FaVideo, FaBullhorn, FaFilm } from 'react-icons/fa';
-import { IconType } from 'react-icons';   
+import { IconType } from 'react-icons';
+import Link from 'next/link';
 
-// Image Paths (Must be in /public folder)
+// Image Paths
 const images = ['/slider1.jpg', '/slider2.jpg', '/slider3.jpg'];
 
 // Service Card Component
@@ -21,7 +22,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ icon: Icon, title, description })
       initial={{ opacity: 0, scale: 0.9 }} 
       animate={{ opacity: 1, scale: 1 }} 
       transition={{ duration: 0.6 }} 
-      className='bg-black bg-opacity-20 p-6 rounded-lg shadow-md text-center'
+      className=' bg-opacity-20 p-6 rounded-lg shadow-md text-center'
     >
       <Icon className='text-4xl text-blue-400 mx-auto' />
       <h3 className='text-xl font-semibold mt-3'>{title}</h3>
@@ -41,10 +42,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen pt-14'>
+    <div className='flex flex-col items-center justify-center min-h-screen pt-14 bg-[#0b0f19]'>
+      
       {/* Full-Width Slider Section */}
       <div className='relative w-full h-[50vh] sm:h-[80vh] md:h-[100vh] overflow-hidden'>
-        <AnimatePresence mode='wait'>
+        <AnimatePresence>
           <motion.div
             key={index}
             initial={{ opacity: 0 }}
@@ -66,7 +68,7 @@ export default function Home() {
       </div>
 
       {/* RK Creations About Section */}
-      <div className='mt-10 w-full max-w-5xl text-center px-6 mb-2 py-10 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg'>
+      <div className='mt-10 w-full max-w-5xl text-center px-6 mb-2 py-10  text-white rounded-lg shadow-lg'>
         <motion.h2 
           initial={{ opacity: 0, y: -30 }} 
           animate={{ opacity: 1, y: 0 }} 
@@ -77,7 +79,7 @@ export default function Home() {
         </motion.h2>
         <p className='mt-4 text-lg text-gray-300'>
           Transforming ideas into reality with top-notch web & app development, digital marketing, video editing, and design services. 🚀  
-          Let's build something amazing together!
+          Let&apos;s build something amazing together!
         </p>
 
         {/* Services Section */}
@@ -108,11 +110,6 @@ export default function Home() {
             description='React Native, Flutter, and full-stack mobile apps.' 
           />
           <ServiceCard 
-            icon={FaPaintBrush} 
-            title='Graphics Design' 
-            description='Creative posters, branding, and visual storytelling.' 
-          />
-          <ServiceCard 
             icon={FaFilm} 
             title='Motion Graphics' 
             description='Animations, visual effects, and 3D graphics.' 
@@ -121,19 +118,24 @@ export default function Home() {
 
         {/* CTA Buttons */}
         <div className='mt-8 flex flex-wrap justify-center gap-4'>
-          <a
+          <Link
             href='/services'
             className='px-6 py-3 bg-blue-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition'
           >
             Explore Services
-          </a>
-          <a
+          </Link>
+          <Link
             href='/contact'
             className='px-6 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition'
           >
             Contact Us
-          </a>
+          </Link>
         </div>
+      </div>
+      
+      {/* Footer */}
+      <div className='mt-16 w-full bg-[#151a30] text-white text-center py-6'>
+        <p>© {new Date().getFullYear()} RK Creation. All rights reserved.</p>
       </div>
     </div>
   );
