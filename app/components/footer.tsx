@@ -19,7 +19,6 @@ export default function Footer() {
             <h2 className="text-xl font-semibold mb-3">Quick Links</h2>
             <ul className="text-gray-400 space-y-2">
               <li><a href="#" className="hover:text-white">Home</a></li>
-              <li><a href="#" className="hover:text-white">Services</a></li>
               <li><a href="#" className="hover:text-white">Portfolio</a></li>
               <li><a href="#" className="hover:text-white">Contact</a></li>
             </ul>
@@ -28,8 +27,8 @@ export default function Footer() {
           {/* Contact & Social Media */}
           <div>
             <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
-            <p className="text-gray-400">Email: contact@rkcreation.com</p>
-            <p className="text-gray-400">Phone: +91 9876543210</p>
+            <p className="text-gray-400">Email: ceorkcreations@gmail.com</p>
+            <p className="text-gray-400">Phone: +91 9667048566</p>
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaFacebookF /></a>
               <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaInstagram /></a>

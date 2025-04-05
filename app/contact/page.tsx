@@ -69,7 +69,7 @@ export default function ContactPage() {
         <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaEnvelope className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Email Us</h3>
-          <p className="text-white/80 mt-2">info@rkcreation.com</p>
+          <p className="text-white/80 mt-2">ceorkcreations@gmail.com</p>
         </div>
       </motion.div>
 
@@ -130,7 +130,7 @@ export default function ContactPage() {
 
         <button
           type="submit"
-          className="mt-6 w-full bg-blue-500 text-white font-bold py-3 rounded-lg transition-all hover:scale-105"
+          className="mt-6 w-full bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white font-bold py-3 rounded-lg transition-all hover:scale-105"
         >
           📩 Send SMS
         </button>

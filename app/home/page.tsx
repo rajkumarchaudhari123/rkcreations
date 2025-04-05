@@ -20,10 +20,10 @@ export default function HomePage() {
         <h1 className='text-5xl md:text-7xl font-bold text-white'>
           Welcome to <span className="text-[#ff512f]">RK Creation</span>
         </h1>
-        <p className='mt-4 text-lg md:text-xl text-slate-900 max-w-3xl mx-auto'>
+        <p className='mt-4 text-lg md:text-xl text-white max-w-3xl mx-auto'>
           Transforming ideas into digital reality with cutting-edge solutions.
         </p>
-        <Link href='/contact' className='mt-6 inline-block bg-[#1a1a2e] text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:bg-[#e84118]'>
+        <Link href='/contact' className='mt-6 inline-block bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:bg-[#e84118]'>
           Get Started
         </Link>
       </motion.div>
@@ -47,14 +47,12 @@ export default function HomePage() {
           <div key={index} className='bg-black p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-700 text-center flex flex-col items-center'>
             <div className='text-5xl text-[#ff512f] mb-4'>{service.icon}</div>
             <h2 className='text-2xl font-bold text-white'>{service.title}</h2>
-            <p className='text-gray-300 mt-3 text-base'>{service.desc}</p>
+            <p className='text-white mt-3 text-base'>{service.desc}</p>
           </div>
         ))}
       </motion.div>
 
-      <Link href='/services' className='mt-8 inline-block bg-[#1a1a2e] text-white px-6 py-3 text-lg font-semibold rounded-lg transition-all hover:bg-[#e84118]'>
-        View All Services
-      </Link>
+      
 
       {/* Why Choose Us */}
       <motion.div 
@@ -91,7 +89,7 @@ export default function HomePage() {
       >
         <h2 className='text-4xl font-bold text-white'>Let&apos;s Work Together</h2>
         <p className='text-slate-900 mt-2 text-lg'>Let&apos;s bring your vision to life with our expertise.</p>
-        <Link href='/contact' className='mt-6 inline-block bg-[#FFD700] text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:bg-[#e8c547]'>
+        <Link href='/contact' className='mt-6 inline-block bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500  mb-2 text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:bg-[#e8c547]'>
           Contact Us
         </Link>
       </motion.div>

@@ -26,7 +26,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ icon: Icon, title, description })
     >
       <Icon className='text-4xl text-blue-400 mx-auto' />
       <h3 className='text-xl font-semibold mt-3'>{title}</h3>
-      <p className='text-gray-300 text-sm mt-2'>{description}</p>
+      <p className='text-amber-300 text-sm mt-2'>{description}</p>
     </motion.div>
   );
 };
@@ -42,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen pt-14 bg-[#0b0f19]'>
+    <div className='flex flex-col items-center justify-center min-h-screen pt-14'>
       
       {/* Full-Width Slider Section */}
       <div className='relative w-full h-[50vh] sm:h-[80vh] md:h-[100vh] overflow-hidden'>
@@ -68,7 +68,7 @@ export default function Home() {
       </div>
 
       {/* RK Creations About Section */}
-      <div className='mt-10 w-full max-w-5xl text-center px-6 mb-2 py-10  text-white rounded-lg shadow-lg'>
+      <div className='mt-10 w-full max-w-5xl text-center px-6 mb-2 py-10 bg-[#04090c] text-white rounded-lg shadow-lg'>
         <motion.h2 
           initial={{ opacity: 0, y: -30 }} 
           animate={{ opacity: 1, y: 0 }} 
@@ -77,7 +77,7 @@ export default function Home() {
         >
           Welcome to <span className='text-blue-500'>RK Creations</span>
         </motion.h2>
-        <p className='mt-4 text-lg text-gray-300'>
+        <p className='mt-4 text-lg text-white'>
           Transforming ideas into reality with top-notch web & app development, digital marketing, video editing, and design services. 🚀  
           Let&apos;s build something amazing together!
         </p>
@@ -118,25 +118,17 @@ export default function Home() {
 
         {/* CTA Buttons */}
         <div className='mt-8 flex flex-wrap justify-center gap-4'>
-          <Link
-            href='/services'
-            className='px-6 py-3 bg-blue-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition'
-          >
-            Explore Services
-          </Link>
+          
           <Link
             href='/contact'
-            className='px-6 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition'
+            className='px-6 py-3 bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition'
           >
             Contact Us
           </Link>
         </div>
       </div>
       
-      {/* Footer */}
-      <div className='mt-16 w-full bg-[#151a30] text-white text-center py-6'>
-        <p>© {new Date().getFullYear()} RK Creation. All rights reserved.</p>
-      </div>
+     
     </div>
   );
 }

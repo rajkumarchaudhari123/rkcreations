@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
-
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -20,17 +18,19 @@ export default function Navbar() {
       >
         {/* Logo */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-extrabold text-white drop-shadow-2xl tracking-widest uppercase"
-        >
-          RK Creation
-        </motion.div>
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  className="text-4xl font-semibold text-white drop-shadow-xl tracking-wide italic"
+  style={{ fontFamily: "'Great Vibes', cursive" }}
+>
+  RK Creation
+</motion.div>
+
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8">
-          {["Home", "Services", "About", "Contact"].map((item, index) => (
+          {["Home", "About", "Contact"].map((item, index) => (
             <motion.li
               key={index}
               initial={{ opacity: 0, y: -10 }}
@@ -97,9 +97,13 @@ export default function Navbar() {
           className="md:hidden bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 bg-opacity-95 rounded-xl mt-3 shadow-2xl overflow-hidden border border-gray-700 transition-all duration-500"
         >
           <ul className="flex flex-col p-4 space-y-4">
-            {["Home", "Services", "About", "Contact"].map((item, index) => (
+            {["Home", "About", "Contact"].map((item, index) => (
               <motion.li key={index} whileHover={{ scale: 1.1 }}>
-                <Link href={`/${item.toLowerCase()}`} className="block text-center text-white text-lg font-semibold hover:text-black transition-all duration-300">
+                <Link
+                  href={`/${item.toLowerCase()}`}
+                  onClick={() => setIsOpen(false)}
+                  className="block text-center text-white text-lg font-semibold hover:text-black transition-all duration-300"
+                >
                   {item}
                 </Link>
               </motion.li>
@@ -122,7 +126,11 @@ export default function Navbar() {
                 >
                   {["Video Editing", "Web", "Graphics", "Digital Marketing", "UI/UX"].map((category, index) => (
                     <li key={index}>
-                      <Link href={`/${category.toLowerCase().replace(/ /g, "-")}`} className="block px-4 py-2 hover:bg-gray-200 rounded-md">
+                      <Link
+                        href={`/${category.toLowerCase().replace(/ /g, "-")}`}
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-2 hover:bg-gray-200 rounded-md"
+                      >
                         {category}
                       </Link>
                     </li>
