@@ -18,28 +18,34 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "RK Creations | Web & App Development | Digital Marketing & SEO",
-  description: "RK Creations - Experts in Web & App Development, SEO, Digital Marketing & Video Editing. Get top-tier digital solutions to boost your business.",
+  description:
+    "RK Creations - Experts in Web & App Development, SEO, Digital Marketing & Video Editing. Get top-tier digital solutions to boost your business.",
   openGraph: {
     title: "RK Creations | Web & App Development | Digital Marketing & SEO",
-    description: "RK Creations - Web & App Development, SEO, Digital Marketing & Video Editing Services.",
+    description:
+      "RK Creations - Web & App Development, SEO, Digital Marketing & Video Editing Services.",
     url: "https://www.rkcreations.live/",
     siteName: "RK Creations",
     images: [
       {
-        url: "https://rkcreation.live/og-image.jpg", // Make sure this image exists
+        url: "https://rkcreations.live/og-image.jpg", // Corrected URL spelling
         width: 1200,
         height: 630,
         alt: "RK Creations - Web & App Development",
       },
     ],
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "RK Creations | Web & App Development | Digital Marketing & SEO",
-    description: "RK Creations - Web & App Development, SEO, Digital Marketing & Video Editing Services.",
-    images: ["https://rkcreation.live/og-image.jpg"],
+    description:
+      "RK Creations - Web & App Development, SEO, Digital Marketing & Video Editing Services.",
+    images: ["https://rkcreations.live/og-image.jpg"], // Corrected spelling
+    creator: "@rkcreations", // (optional) if you have a Twitter account
   },
+  metadataBase: new URL("https://rkcreations.live"), // Optional but helpful
 };
 
 
@@ -57,7 +63,7 @@ export default function RootLayout({
       >
         <>
   <Navbar />
-  <div className="min-h-screen w-full bg-gradient-to-br from-[#8693AB] to-[#BDD4E7]">
+  <div className="pt-[10px] min-h-screen w-full bg-gradient-to-br from-[#8693AB] to-[#BDD4E7]">
     {children}
   </div>
   <Footer />

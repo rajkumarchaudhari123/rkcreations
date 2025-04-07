@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rkcreations.live/sitemap.xml

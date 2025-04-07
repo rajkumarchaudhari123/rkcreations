@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 backdrop-blur-xl shadow-3xl border-b border-gray-700 p-3 rounded-b-3xl transition-all duration-500">
+    <nav className="fixed w-full top-0 z-50 bg-gradient-to-r from-white via-pink-400 to-yellow-300 backdrop-blur-xl shadow-3xl border-b border-gray-700 p-3 rounded-b-3xl transition-all duration-500">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -18,13 +19,14 @@ export default function Navbar() {
       >
         {/* Logo */}
         <motion.div
-  initial={{ scale: 0.8, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  transition={{ duration: 0.5 }}
-  className="text-4xl font-semibold text-white drop-shadow-xl tracking-wide italic"
-  style={{ fontFamily: "'Great Vibes', cursive" }}
+
 >
-  RK Creation
+  <Image
+    src="/rklogo.PNG" // public folder ke andar rakho image
+    alt="RK Creations Logo"
+    width={120}
+    height={80}
+  />
 </motion.div>
 
 

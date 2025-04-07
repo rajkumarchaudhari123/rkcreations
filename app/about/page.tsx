@@ -51,14 +51,12 @@ export default function AboutPage() {
       {/* Call to Action */}
       <motion.div className="relative z-10 mt-16 text-center">
         <h2 className="text-4xl font-bold text-white">Let’s Create Something Extraordinary</h2>
-        <p className="text-gray-300 mt-2 text-lg">Partner with us for your next big project.</p>
+        <p className="text-white mt-2 text-lg">Partner with us for your next big project.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <Link href="/contact" className="bg-gradient-to-r from-[#ff512f] to-[#dd2476] text-white px-6 py-3 text-lg font-semibold rounded-full transition-all hover:scale-105">
+          <Link href="/contact" className="bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white px-6 py-3 text-lg font-semibold rounded-full transition-all hover:scale-105">
             Contact Us
           </Link>
-          <Link href="/services" className="bg-white text-[#ff512f] px-6 py-3 text-lg font-semibold rounded-full transition-all hover:bg-white/80">
-            View Services
-          </Link>
+         
         </div>
       </motion.div>
     </div>
