@@ -5,26 +5,49 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/
 
 export default function ContactPage() {
   const phoneNumber = "+919667048566";
+
   const [formData, setFormData] = useState({
     name: "",
     message: "",
+    phone: "",
+    email: "",
   });
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle SMS submission
-  const handleSMS = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const smsText = `Name: ${formData.name}%0A${formData.message}`;
-    window.location.href = `sms:${phoneNumber}?body=${smsText}`;
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbw0X6vwE9pre_Am8uwonCUIhNMGKQxrgzunf9I8itd0Il84gGgVF6NpeoLPEwN9B23Umg/exec";
+
+    const formDataToSend = new URLSearchParams();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("message", formData.message);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("email", formData.email);
+
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const whatsappMessage = `Name: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappURL, "_blank");
+
+      alert("Form submitted successfully!");
+      setFormData({ name: "", message: "", phone: "", email: "" });
+    } catch (error) {
+      console.error("Error!", error);
+      alert("There was an error submitting the form.");
+    }
   };
 
   return (
-    <div className="relative  mt-5 flex flex-col items-center px-6 py-12 font-sans text-white">
-      {/* Heading */}
+    <div className="relative mt-5 flex flex-col items-center px-6 py-12 font-sans text-white">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -44,7 +67,6 @@ export default function ContactPage() {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl"
       >
-        {/* Address */}
         <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaMapMarkerAlt className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Our Address</h3>
@@ -53,7 +75,6 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Phone */}
         <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaPhoneAlt className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Call Us</h3>
@@ -65,7 +86,6 @@ export default function ContactPage() {
           </a>
         </div>
 
-        {/* Email */}
         <div className="flex flex-col items-center bg-black p-6 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md">
           <FaEnvelope className="text-3xl text-white" />
           <h3 className="text-2xl font-semibold mt-3">Email Us</h3>
@@ -73,7 +93,7 @@ export default function ContactPage() {
         </div>
       </motion.div>
 
-      {/* Direct Contact Buttons */}
+      {/* Contact Buttons */}
       <div className="mt-8 flex flex-wrap justify-center gap-6">
         <a
           href={`https://wa.me/${phoneNumber}`}
@@ -92,17 +112,17 @@ export default function ContactPage() {
         </a>
       </div>
 
-      {/* Contact Form for SMS */}
+      {/* Form */}
       <motion.form
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        onSubmit={handleSMS}
+        onSubmit={handleSubmit}
         className="mt-12 w-full max-w-3xl bg-black p-8 rounded-2xl shadow-lg border border-white/30 backdrop-blur-md"
       >
-        <h2 className="text-3xl font-bold text-center">Send a Message via SMS</h2>
+        <h2 className="text-3xl font-bold text-center">Send a Message</h2>
         <p className="text-white/80 text-center mt-2">
-          Fill out the form and send your message directly via SMS.
+          Fill out the form and we’ll get back to you soon.
         </p>
 
         <div className="mt-6">
@@ -112,6 +132,30 @@ export default function ContactPage() {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
+            className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none"
+            required
+          />
+        </div>
+
+        <div className="mt-4">
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Your Phone Number"
+            className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none"
+            required
+          />
+        </div>
+
+        <div className="mt-4">
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Your Email"
             className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none"
             required
           />
@@ -132,11 +176,11 @@ export default function ContactPage() {
           type="submit"
           className="mt-6 w-full bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white font-bold py-3 rounded-lg transition-all hover:scale-105"
         >
-          📩 Send SMS
+          📩 Send Message
         </button>
       </motion.form>
 
-      {/* Google Map Embed */}
+      {/* Google Map */}
       <div className="mt-12 w-full max-w-4xl h-64 rounded-2xl overflow-hidden shadow-lg">
         <iframe
           className="w-full h-full border-none"

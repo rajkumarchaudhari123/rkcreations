@@ -30,7 +30,6 @@ const ServiceCard: React.FC<ServiceProps> = ({ icon: Icon, title, description })
     </motion.div>
   );
 };
-
 export default function Home() {
   const [index, setIndex] = useState(0);
 
