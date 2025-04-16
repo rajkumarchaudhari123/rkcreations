@@ -44,7 +44,7 @@ export default function Home() {
     <div className='flex flex-col items-center justify-center min-h-screen pt-14'>
       
       {/* Full-Width Slider Section */}
-      <div className='relative w-full h-[50vh] sm:h-[80vh] md:h-[100vh] overflow-hidden'>
+      <div className='relative w-full h-[40vh] sm:h-[60vh] md:h-[100vh] overflow-hidden'>
         <AnimatePresence>
           <motion.div
             key={index}
@@ -60,7 +60,7 @@ export default function Home() {
               width={1920}
               height={1080}
               priority
-              className='w-full h-full object-cover'
+              className='w-full h-full object-cover object-center'
             />
           </motion.div>
         </AnimatePresence>

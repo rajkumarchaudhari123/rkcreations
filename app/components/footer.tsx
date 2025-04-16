@@ -31,9 +31,9 @@ export default function Footer() {
             <p className="text-gray-400">Phone: +91 9667048566</p>
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaFacebookF /></a>
-              <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaInstagram /></a>
+              <a href="https://www.instagram.com/rkcreactions.in?igsh=MWMzZGptYjB3M2I5Nw==" className="text-gray-400 hover:text-white text-2xl"><FaInstagram /></a>
               <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaTwitter /></a>
-              <a href="#" className="text-gray-400 hover:text-white text-2xl"><FaLinkedinIn /></a>
+              <a href="https://www.linkedin.com/in/raj-kumar-54b9532b5" className="text-gray-400 hover:text-white text-2xl"><FaLinkedinIn /></a>
             </div>
           </div>
         </div>
