@@ -14,7 +14,9 @@ export default function Navbar() {
   const navItems = ["Home", "About", "Contact"];
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-gradient-to-r from-white via-pink-400 to-yellow-300 backdrop-blur-xl shadow-3xl border-b border-gray-700 p-3 rounded-b-3xl transition-all duration-500">
+    <nav className="fixed w-full top-0 z-50 bg-gradient-to-r from-[#86efac]
+via-[#fcd34d]
+to-[#f9a8d4] backdrop-blur-xl shadow-3xl border-b border-gray-700 p-3 rounded-b-3xl transition-all duration-500">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

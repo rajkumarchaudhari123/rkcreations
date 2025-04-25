@@ -63,9 +63,12 @@ export default function RootLayout({
       >
         <>
   <Navbar />
-  <div className="pt-[13px] min-h-screen w-full bg-gradient-to-br from-[#8693AB] to-[#BDD4E7]">
-    {children}
-  </div>
+  <div className="pt-[13px] min-h-screen w-full bg-gradient-to-br from-[#0f172a]
+to-[#334155] transition-all duration-1000 ease-in-out">
+  {children}
+</div>
+
+
   <Footer />
 </>
 

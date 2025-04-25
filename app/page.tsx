@@ -126,8 +126,50 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      
-     
+
+      {/* "I have had the opportunity to collaborate with them." */}
+
+   
+      {/* <div className="p-4">
+      <h1 className="text-center text-2xl font-semibold mb-6">I’ve had the privilege of working with them</h1>
+
+      <div className="flex flex-wrap justify-around gap-6">
+        <div className="flex flex-col justify-around">
+          <h2 className="text-xl font-medium mb-2">The TechUnique Academy</h2>
+          <Image
+            src="/techunique-academy.png" // Add the correct image path
+            alt="The TechUnique Academy"
+            width={200}
+            height={200}
+            className="rounded-lg shadow-lg bg-black"
+          />
+        </div>
+
+        <div className="flex flex-col items-center">
+          <h2 className="text-xl font-medium mb-2">CreativeNari</h2>
+          <Image
+            src="/path/to/creativenari.jpg" // Add the correct image path
+            alt="CreativeNari"
+            width={32}
+            height={32}
+            className="rounded-lg shadow-lg"
+          />
+        </div>
+
+        <div className="flex flex-col items-center">
+          <h2 className="text-xl font-medium mb-2">Travelya</h2>
+          <Image
+            src="/path/to/travelya.jpg" // Add the correct image path
+            alt="Travelya"
+            width={32}
+            height={32}
+            className="rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+    </div> */}
+
+
     </div>
   );
 }

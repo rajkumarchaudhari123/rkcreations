@@ -34,8 +34,8 @@ export default function GraphicsPage() {
           <motion.div
             key={i}
             className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg overflow-hidden"
-            initial={{ rotateY: 180, opacity: 0 }}
-            animate={i === index ? { rotateY: 0, opacity: 1 } : { rotateY: 180, opacity: 0 }}
+            initial={{ rotateY: 360, opacity: 0 }}
+            animate={i === index ? { rotateY: 0, opacity: 1 } : { rotateY: 360, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
           >

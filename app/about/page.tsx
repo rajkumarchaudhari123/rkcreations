@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <div className="relative min-h-screen bg-[#bdd4e7] bg-gradient-to-br from-[#bdd4e7] to-[#8693ab] text-white flex flex-col mt-2.5 items-center px-6 py-12 font-sans overflow-hidden">
+    <div className="relative min-h-screen  text-white flex flex-col mt-2.5 items-center px-6 py-12 font-sans overflow-hidden">
       {/* Floating Glass Card */}
       <motion.div 
         initial={{ opacity: 0, y: -50 }} 
@@ -53,9 +53,14 @@ export default function AboutPage() {
         <h2 className="text-4xl font-bold text-white">Let’s Create Something Extraordinary</h2>
         <p className="text-white mt-2 text-lg">Partner with us for your next big project.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <Link href="/contact" className="bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 text-white px-6 py-3 text-lg font-semibold rounded-full transition-all hover:scale-105">
-            Contact Us
-          </Link>
+        <Link
+  href="/contact"
+  className="relative inline-block px-6 py-3 text-lg font-semibold text-white rounded-full bg-gradient-to-r from-purple-700 via-pink-600 to-yellow-500 overflow-hidden group hover:scale-105 transition-transform duration-300"
+>
+  <span className="relative z-10">Contact Us</span>
+  <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:blur-sm before:animate-glow before:rounded-full" />
+</Link>
+
          
         </div>
       </motion.div>
