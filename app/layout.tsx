@@ -48,9 +48,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://rkcreations.live"), // Optional but helpful
 };
 
-
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,20 +55,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* 👇 Custom Favicon Link Here */}
+        <link rel="icon" href="/rklogo.png?v=2" type="image/png" />
+        <title>My Custom App</title>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <>
-  <Navbar />
-  <div className="pt-[13px] min-h-screen w-full bg-gradient-to-br from-[#0f172a]
-to-[#334155] transition-all duration-1000 ease-in-out">
-  {children}
-</div>
+          <Navbar />
+          <div
+            className="pt-[13px] min-h-screen w-full bg-gradient-to-br from-[#0f172a]
+to-[#334155] transition-all duration-1000 ease-in-out"
+          >
+            {children}
+          </div>
 
-
-  <Footer />
-</>
-
+          <Footer />
+        </>
       </body>
     </html>
   );
