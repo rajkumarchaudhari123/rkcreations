@@ -135,6 +135,50 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      {/* about us and team  */}
+      <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#ff512f] to-[#dd2476] text-transparent bg-clip-text text-center my-10">
+        Meet Our Team
+      </h1>
+
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-6 py-4">
+        {/* Rajkumar */}
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-md w-full md:w-1/3">
+          <h2 className="text-center text-2xl font-bold text-white mb-2">
+            Rajkumar – Founder & Visionary 🚀
+          </h2>
+          <p className="text-amber-300 font-medium text-center">
+            I’m Rajkumar, a passionate full-stack web developer and the creative
+            force behind RK Creations. With years of hands-on experience and a
+            strong background in Next.js, React, Firebase, Tailwind CSS, and
+            modern web technologies.
+          </p>
+        </div>
+
+        {/* Sunita Devi */}
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-md w-full md:w-1/3">
+          <h2 className="text-center text-2xl font-bold text-white mb-2">
+            Sunita Devi – Digital Marketing Expert
+          </h2>
+          <p className="text-amber-300 font-medium text-center">
+            I’m Sunita Devi, a seasoned digital marketing expert with proven
+            experience in boosting online presence, engagement, and growth for
+            businesses across various industries.
+          </p>
+        </div>
+
+        {/* Aabha Chaturvedi */}
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-md w-full md:w-1/3">
+          <h2 className="text-center text-2xl font-bold text-white mb-2">
+            Aabha Chaturvedi – Graphic Designer
+          </h2>
+          <p className="text-amber-300 font-medium text-center">
+            I’m Aabha Chaturvedi, a highly experienced graphic designer with a
+            passion for creating visually compelling and impactful designs —
+            from logos and branding to social media creatives and marketing
+            materials.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
