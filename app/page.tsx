@@ -13,7 +13,7 @@ import { IconType } from "react-icons";
 import Link from "next/link";
 
 // Image Paths
-const images = ["/slider1.jpg", "/slider2.jpg", "/slider3.jpg"];
+const images = ["/slider4.jpg", "/slider5.jpg", "/slider6.jpg"];
 
 // Service Card Component
 interface ServiceProps {
