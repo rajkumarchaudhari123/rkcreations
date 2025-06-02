@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import ToolsSection from "./components/ToolsSection";
 import {
   FaCode,
   FaPaintBrush,
@@ -179,6 +180,7 @@ export default function Home() {
           </p>
         </div>
       </div>
+      <ToolsSection />
     </div>
   );
 }
