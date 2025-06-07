@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { IconType } from "react-icons";
 import Link from "next/link";
+import Experience from "./components/Experience";
 
 // Image Paths
 const images = ["/slider4.jpg", "/slider5.jpg", "/slider6.jpg"];
@@ -145,7 +146,7 @@ export default function Home() {
         {/* Rajkumar */}
         <div className="bg-gray-900 p-6 rounded-2xl shadow-md w-full md:w-1/3">
           <h2 className="text-center text-2xl font-bold text-white mb-2">
-            Rajkumar – Founder & Visionary 🚀
+            Rajkumar Chaudhari – Founder & Visionary 🚀
           </h2>
           <p className="text-amber-300 font-medium text-center">
             I’m Rajkumar, a passionate full-stack web developer and the creative
@@ -181,6 +182,7 @@ export default function Home() {
         </div>
       </div>
       <ToolsSection />
+      <Experience />
     </div>
   );
 }
