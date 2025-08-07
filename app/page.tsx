@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Web from '../app/web/page';
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import ToolsSection from "./components/ToolsSection";
@@ -183,6 +184,9 @@ export default function Home() {
       </div>
       <ToolsSection />
       <Experience />
+      <Web/>
+      
+      
     </div>
   );
 }
