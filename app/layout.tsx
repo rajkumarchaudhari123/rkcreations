@@ -57,7 +57,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* 👇 Custom Favicon Link Here */}
-        <link rel="icon" href="/rklogo.png?v=2" type="image/png" />
+        <link rel="icon" href="http://localhost:3000/_next/image?url=%2Frklogo.PNG&w=256&q=75" type="image/png" />
         <title>My Custom App</title>
       </head>
       <body
