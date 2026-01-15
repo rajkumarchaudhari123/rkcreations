@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   FaFacebookF,
@@ -18,19 +18,30 @@ import { motion } from "framer-motion";
 import { Sparkles, Rocket, Code, Palette } from "lucide-react";
 
 export default function Footer() {
+  const [particles, setParticles] = useState<Array<{left: string, top: string}>>([]);
+
+  useEffect(() => {
+    // Client-side only: Generate random positions for particles
+    const generatedParticles = Array.from({ length: 30 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    }));
+    setParticles(generatedParticles);
+  }, []);
+
   return (
     <footer className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden">
       {/* 3D Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#ff1493]/30 rounded-full"
               animate={{
-                x: [0, Math.random() * 100 - 50],
                 y: [0, Math.random() * 100 - 50],
+                x: [0, Math.random() * 100 - 50],
               }}
               transition={{
                 duration: 3 + Math.random() * 2,
@@ -38,8 +49,8 @@ export default function Footer() {
                 repeatType: "reverse",
               }}
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: particle.left,
+                top: particle.top,
               }}
             />
           ))}
@@ -111,7 +122,7 @@ export default function Footer() {
                   </div>
                 </div>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  We specialize in crafting cutting-edge digital experiences through modern web/app development, 
+                  We specialize in crafting cutting-edge digital experiences through modern web/app development,
                   AI integration, stunning design, and strategic branding. Let&apos;s build the future together!
                 </p>
                 <div className="flex flex-wrap gap-4">

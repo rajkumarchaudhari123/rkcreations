@@ -11,7 +11,12 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -118,7 +123,7 @@ export default function Navbar() {
               </motion.div>
             </div>
             
-            {/* Floating particles */}
+            {/* Floating particles - Only on hover */}
             {isHovering && (
               <>
                 <motion.div
@@ -140,12 +145,12 @@ export default function Navbar() {
     </Link>
   );
 
-  // 3D Blueish Button Component
-  const QuoteButton = ({ isMobile = false }: { isMobile?: boolean }) => (
+  // 3D Blueish Button Component (Only for desktop)
+  const DesktopQuoteButton = () => (
     <Link href="/contact">
       <motion.div
-        className={`relative ${isMobile ? 'w-full py-4' : 'px-6 py-3'} rounded-xl overflow-hidden group`}
-        whileHover={{ scale: isMobile ? 1.02 : 1.05, y: isMobile ? 0 : -3 }}
+        className="relative px-6 py-3 rounded-xl overflow-hidden group hidden lg:block"
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
@@ -161,7 +166,7 @@ export default function Navbar() {
         
         {/* Button content */}
         <div className="relative flex items-center justify-center gap-2">
-          <span className={`font-bold text-white ${isMobile ? 'text-base' : 'text-sm md:text-base'}`}>
+          <span className="font-bold text-white text-sm md:text-base">
             Get a Quote
           </span>
           <motion.div
@@ -169,6 +174,38 @@ export default function Navbar() {
             transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 2 }}
           >
             <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+          </motion.div>
+        </div>
+      </motion.div>
+    </Link>
+  );
+
+  // Mobile Quote Button (Only in mobile menu)
+  const MobileQuoteButton = () => (
+    <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+      <motion.div
+        className="relative w-full py-4 rounded-xl overflow-hidden group"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      >
+        {/* 3D depth layers */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg" />
+        <div className="absolute inset-0.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl" />
+        
+        {/* Inner glow */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-xl" />
+        
+        {/* Button content */}
+        <div className="relative flex items-center justify-center gap-2">
+          <span className="font-bold text-white text-base">
+            Get a Quote
+          </span>
+          <motion.div
+            animate={{ x: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 2 }}
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
           </motion.div>
         </div>
       </motion.div>
@@ -188,29 +225,8 @@ export default function Navbar() {
             : 'py-4 md:py-6 bg-gradient-to-b from-blue-900/40 via-blue-800/40 to-cyan-900/40'
         }`}
       >
-        {/* Animated background particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-              animate={{
-                y: [0, Math.random() * 50 - 25],
-                x: [0, Math.random() * 50 - 25],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-
+        {/* Remove floating particles completely to avoid hydration errors */}
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -259,18 +275,14 @@ export default function Navbar() {
                 </Link>
               ))}
               
-              {/* Desktop Quote Button */}
+              {/* Desktop Quote Button (Only on desktop) */}
               <div className="ml-4">
-                <QuoteButton />
+                <DesktopQuoteButton />
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden flex items-center gap-4">
-              <div className="relative">
-                <QuoteButton />
-              </div>
-              
+            {/* Mobile Menu Button - Removed Get Quote button from mobile header */}
+            <div className="lg:hidden flex items-center">
               <motion.button
                 className="hamburger-button relative w-12 h-12 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-blue-800/40 to-cyan-800/40 border border-blue-400/30 backdrop-blur-xl"
                 onClick={toggleMenu}
@@ -405,7 +417,7 @@ export default function Navbar() {
                     <p className="text-blue-200 text-sm mb-4">
                       Let&apos;s create something extraordinary together
                     </p>
-                    <QuoteButton isMobile={true} />
+                    <MobileQuoteButton />
                   </div>
 
                   {/* Contact Info */}

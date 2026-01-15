@@ -2,22 +2,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { 
-  FaRocket, 
-  FaEye, 
-  FaLightbulb, 
-  FaHandshake, 
+import {
+  FaRocket,
+  FaEye,
+  FaLightbulb,
+  FaHandshake,
   FaChartLine,
   FaCode,
   FaCloud,
   FaShieldAlt,
   FaBrain
 } from "react-icons/fa";
-import { 
-  Sparkles, 
-  Target, 
-  Zap, 
-  Award, 
+import {
+  Sparkles,
+  Target,
+  Zap,
+  Award,
   TrendingUp,
   Cpu,
   Palette,
@@ -95,27 +95,31 @@ export default function AboutPage() {
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl" />
       </div>
 
+  // app/about/page.tsx में इस part को बदलें:
+
       {/* Floating Particles */}
       <div className="absolute inset-0">
-        {[...Array(25)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            animate={{
-              y: [0, Math.random() * 100 - 50],
-              x: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
+        {typeof window !== 'undefined' &&
+          [...Array(25)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+              animate={{
+                y: [0, Math.random() * 100 - 50],
+                x: [0, Math.random() * 100 - 50],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))
+        }
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -131,14 +135,14 @@ export default function AboutPage() {
             <span className="text-cyan-400 font-semibold tracking-widest">OUR STORY</span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
-          
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
             Building The Future
             <span className="block text-cyan-400 mt-2">Of Digital Experiences</span>
           </h1>
-          
+
           <p className="text-xl text-blue-200/80 max-w-3xl mx-auto">
-            We are a cutting-edge digital agency transforming ideas into scalable, 
+            We are a cutting-edge digital agency transforming ideas into scalable,
             high-performance solutions that drive real business impact.
           </p>
         </motion.div>
@@ -189,8 +193,8 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-white">Our Mission</h2>
               </div>
               <p className="text-lg text-blue-200/80 leading-relaxed mb-6">
-                To deliver exceptional digital solutions that empower businesses to thrive 
-                in the modern digital landscape. We combine technical excellence with 
+                To deliver exceptional digital solutions that empower businesses to thrive
+                in the modern digital landscape. We combine technical excellence with
                 creative innovation to build products that make a difference.
               </p>
               <div className="space-y-3">
@@ -225,7 +229,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-white">Our Vision</h2>
               </div>
               <p className="text-lg text-blue-200/80 leading-relaxed mb-6">
-                To be the most trusted digital innovation partner globally, recognized 
+                To be the most trusted digital innovation partner globally, recognized
                 for transforming industries through technology and design excellence.
               </p>
               <div className="space-y-3">
@@ -411,7 +415,7 @@ export default function AboutPage() {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-xl text-blue-200/80 mb-8 max-w-2xl mx-auto">
-              Partner with us to bring your digital vision to life with expertise, 
+              Partner with us to bring your digital vision to life with expertise,
               innovation, and passion.
             </p>
             <div className="flex flex-wrap justify-center gap-6">

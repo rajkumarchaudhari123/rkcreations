@@ -80,27 +80,31 @@ export default function ContactPage() {
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl" />
       </div>
 
+  // app/contact/page.tsx में इस part को बदलें:
+
       {/* Floating Particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            animate={{
-              y: [0, Math.random() * 100 - 50],
-              x: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
+        {typeof window !== 'undefined' &&
+          [...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+              animate={{
+                y: [0, Math.random() * 100 - 50],
+                x: [0, Math.random() * 100 - 50],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))
+        }
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -116,14 +120,14 @@ export default function ContactPage() {
             <span className="text-cyan-400 font-semibold tracking-widest">CONTACT US</span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
-          
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
             Let&apos;s Create Something
             <span className="block text-cyan-400 mt-2">Extraordinary Together</span>
           </h1>
-          
+
           <p className="text-xl text-blue-200/80 max-w-3xl mx-auto">
-            Ready to bring your vision to life? Get in touch with our team of experts 
+            Ready to bring your vision to life? Get in touch with our team of experts
             for a free consultation and project estimate.
           </p>
         </motion.div>
@@ -402,11 +406,10 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
-                    isSubmitting
+                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${isSubmitting
                       ? 'bg-gradient-to-r from-gray-600 to-gray-700 cursor-not-allowed'
                       : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:shadow-xl hover:shadow-cyan-500/30'
-                  }`}
+                    }`}
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-3">
@@ -522,7 +525,7 @@ export default function ContactPage() {
                 <span>📍 Get Directions</span>
               </div>
             </div>
-            
+
             <div className="h-96 rounded-xl overflow-hidden border border-blue-400/20 shadow-2xl">
               <iframe
                 className="w-full h-full border-none"
@@ -533,7 +536,7 @@ export default function ContactPage() {
                 title="RK Creations Office Location"
               />
             </div>
-            
+
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-4 rounded-xl bg-blue-800/30">
                 <p className="text-cyan-300 font-semibold">🚗 Parking Available</p>
