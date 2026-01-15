@@ -53,7 +53,7 @@ export default function ProjectsPage() {
     },
     {
       name: "Cyber Security Dashboard",
-      link: "https://warm-sprinkles-a1db70.netlify.app/",
+      link: "https://virtualcyberlabs.com",
       img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "Security",
       description: "Real-time cybersecurity monitoring and analytics dashboard",
@@ -80,45 +80,48 @@ export default function ProjectsPage() {
     },
     {
       name: "MediCare Pro",
-      link: "#",
-      img: "https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+      link: "https://medicare-pro-demo.vercel.app/",
+      img: "https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Healthcare",
       description: "Healthcare management system for clinics and hospitals",
       tags: ["Next.js", "TypeScript", "GraphQL"],
-      color: "from-teal-500 to-blue-500"
+      color: "from-teal-500 to-blue-500",
     },
     {
       name: "EduLearn Platform",
-      link: "#",
+      link: "https://edulearn-platform-demo.vercel.app/",
       img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "EdTech",
       description: "Interactive online learning platform with video courses",
       tags: ["React", "Video.js", "MongoDB"],
-      color: "from-violet-500 to-purple-500"
+      color: "from-violet-500 to-purple-500",
+      status: "demo"
     },
     {
       name: "FitTrack Pro",
-      link: "#",
+      link: "https://athenasocial.webflow.io/",
       img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "Fitness",
       description: "Comprehensive fitness tracking and workout planning app",
       tags: ["React Native", "Firebase", "Chart.js"],
-      color: "from-rose-500 to-red-500"
+      color: "from-rose-500 to-red-500",
     },
     {
       name: "Real Estate Hub",
-      link: "#",
+      link: "https://real-estate-hub-demo.vercel.app/",
       img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "Real Estate",
       description: "Property listing and management platform with virtual tours",
       tags: ["Next.js", "3D.js", "Mapbox"],
-      color: "from-amber-500 to-yellow-500"
+      color: "from-amber-500 to-yellow-500",
+      status: "demo"
     }
   ];
 
   const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education"];
-  
   const [particles, setParticles] = useState<Array<{left: string, top: string}>>([]);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
   useEffect(() => {
     // Client-side only: Generate random positions for particles
@@ -128,6 +131,31 @@ export default function ProjectsPage() {
     }));
     setParticles(generatedParticles);
   }, []);
+
+  useEffect(() => {
+    // Filter projects based on active filter
+    if (activeFilter === "All") {
+      setFilteredProjects(projects);
+    } else {
+      const filtered = projects.filter(project => 
+        project.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
+        project.tags.some(tag => tag.toLowerCase().includes(activeFilter.toLowerCase()))
+      );
+      setFilteredProjects(filtered);
+    }
+  }, [activeFilter]);
+
+  const handleVisitProject = (link: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (link && link !== "#") {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleExternalLinkClick = (link: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleVisitProject(link);
+  };
 
   return (
     <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -198,8 +226,9 @@ export default function ProjectsPage() {
               key={category}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveFilter(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                index === 0
+                activeFilter === category
                   ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30'
                   : 'bg-blue-900/40 border border-blue-400/30 text-blue-200 hover:bg-blue-800/40 hover:border-blue-300/40'
               }`}
@@ -211,7 +240,7 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -246,8 +275,17 @@ export default function ProjectsPage() {
                   
                   {/* Live Indicator */}
                   <div className="absolute top-4 right-4 flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-xs text-green-300 font-medium">Live</span>
+                    {project.status === "demo" ? (
+                      <>
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                        <span className="text-xs text-yellow-300 font-medium">Demo</span>
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        <span className="text-xs text-green-300 font-medium">Live</span>
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -258,12 +296,15 @@ export default function ProjectsPage() {
                       <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
                       <p className="text-blue-200/80 text-sm mb-4">{project.description}</p>
                     </div>
-                    <motion.div
-                      whileHover={{ rotate: 90 }}
-                      className="flex-shrink-0"
+                    <motion.button
+                      whileHover={{ rotate: 90, scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => handleExternalLinkClick(project.link, e)}
+                      className="flex-shrink-0 p-1 hover:bg-blue-800/30 rounded-lg transition-colors"
+                      title="Open in new tab"
                     >
                       <ExternalLink className="w-5 h-5 text-cyan-400" />
-                    </motion.div>
+                    </motion.button>
                   </div>
 
                   {/* Tech Tags */}
@@ -280,17 +321,16 @@ export default function ProjectsPage() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`flex-1 py-2.5 rounded-xl bg-gradient-to-r ${project.color} text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-current/30 transition-all`}
+                      onClick={() => handleVisitProject(project.link)}
+                      className={`flex-1 py-2.5 relative z-20 rounded-xl bg-gradient-to-r ${project.color} text-white font-semibold text-center flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-current/30 cursor-pointer`}
                     >
                       <Eye className="w-4 h-4" />
-                      Visit Project
-                    </motion.a>
+                      {project.status === "demo" ? "View Demo" : "Visit Project"}
+                    </motion.button>
+                    
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -307,6 +347,25 @@ export default function ProjectsPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* Show message when no projects found */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-xl text-blue-200/80">
+              No projects found for "{activeFilter}" category.
+            </p>
+            <button
+              onClick={() => setActiveFilter("All")}
+              className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
+            >
+              Show All Projects
+            </button>
+          </motion.div>
+        )}
 
         {/* Stats Section */}
         <motion.div
@@ -353,15 +412,15 @@ export default function ProjectsPage() {
                 Let&apos;s discuss how we can bring your vision to life with our 
                 expertise in creating exceptional digital experiences.
               </p>
-              <motion.a
-                href="/contact"
+              <motion.button
+                onClick={() => window.location.href = "/contact"}
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all cursor-pointer"
               >
                 <Zap className="w-5 h-5" />
                 Start Your Project Today
-              </motion.a>
+              </motion.button>
             </div>
           </div>
         </motion.div>

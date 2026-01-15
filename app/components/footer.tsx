@@ -166,10 +166,8 @@ export default function Footer() {
               {[
                 { name: "Home", href: "/" },
                 { name: "Portfolio", href: "/portfolio" },
-                { name: "Services", href: "/services" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" },
-                { name: "Blog", href: "/blog" },
               ].map((link, index) => (
                 <motion.li
                   key={link.name}
