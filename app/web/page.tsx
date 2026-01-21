@@ -35,7 +35,7 @@ export default function ProjectsPage() {
     },
     {
       name: "Travelya",
-      link: "http://www.travelya.site",
+      link: "https://travelya-zeta.vercel.app/",
       img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "Travel & Tourism",
       description: "Comprehensive travel booking and planning platform",
