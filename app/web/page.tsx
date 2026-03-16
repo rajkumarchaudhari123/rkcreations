@@ -88,6 +88,15 @@ export default function ProjectsPage() {
       color: "from-teal-500 to-blue-500",
     },
     {
+      name: "Intech Pest Control",
+      link: "https://intech-pest-control.vercel.app/",
+      img: "https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: "Healthcare",
+      description: "Healthcare management system for clinics and hospitals",
+      tags: ["Next.js", "TypeScript", "GraphQL"],
+      color: "from-teal-500 to-blue-500",
+    },
+    {
       name: "EduLearn Platform",
       link: "https://edulearn-platform-demo.vercel.app/",
       img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
