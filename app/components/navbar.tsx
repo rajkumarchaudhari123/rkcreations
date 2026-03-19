@@ -56,7 +56,6 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', path: '/', icon: '🏠' },
     { name: 'Portfolio', path: '/web', icon: '📁' },
-    
     { name: 'About', path: '/about', icon: '👤' },
     { name: 'Contact', path: '/contact', icon: '📞' },
   ];

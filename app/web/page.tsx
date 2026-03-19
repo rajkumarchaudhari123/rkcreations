@@ -124,7 +124,17 @@ export default function ProjectsPage() {
       tags: ["Next.js", "3D.js", "Mapbox"],
       color: "from-amber-500 to-yellow-500",
       status: "demo"
-    }
+    },
+    {
+      name: "Squeako APP-Development",
+      link: "https://play.google.com/store/apps/details?id=com.squeako.mobileappchat",
+      img: "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=1201&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: "EdTech",
+      description: "Interactive online learning platform with video courses",
+      tags: ["React", "Video.js", "MongoDB"],
+      color: "from-violet-500 to-purple-500",
+      status: "demo"
+    },
   ];
 
   const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education"];
