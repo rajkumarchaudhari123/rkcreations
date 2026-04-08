@@ -97,6 +97,15 @@ export default function ProjectsPage() {
       color: "from-teal-500 to-blue-500",
     },
     {
+      name: "Watcon International",
+      link: "https://watcon-international.vercel.app/",
+      img: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: "Watson International",
+      description: "Healthcare management system for clinics and hospitals",
+      tags: ["Next.js", "TypeScript", "GraphQL"],
+      color: "from-teal-500 to-blue-500",
+    },
+    {
       name: "EduLearn Platform",
       link: "https://edulearn-platform-demo.vercel.app/",
       img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -133,12 +142,11 @@ export default function ProjectsPage() {
       description: "Interactive online learning platform with video courses",
       tags: ["React", "Video.js", "MongoDB"],
       color: "from-violet-500 to-purple-500",
-      status: "demo"
     },
   ];
 
   const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education"];
-  const [particles, setParticles] = useState<Array<{left: string, top: string}>>([]);
+  const [particles, setParticles] = useState<Array<{ left: string, top: string }>>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
@@ -156,7 +164,7 @@ export default function ProjectsPage() {
     if (activeFilter === "All") {
       setFilteredProjects(projects);
     } else {
-      const filtered = projects.filter(project => 
+      const filtered = projects.filter(project =>
         project.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
         project.tags.some(tag => tag.toLowerCase().includes(activeFilter.toLowerCase()))
       );
@@ -183,7 +191,7 @@ export default function ProjectsPage() {
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl" />
-        
+
         {/* Floating Particles */}
         <div className="absolute inset-0">
           {particles.map((particle, i) => (
@@ -221,14 +229,14 @@ export default function ProjectsPage() {
             <span className="text-cyan-400 font-semibold tracking-widest">OUR PORTFOLIO</span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
-          
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
             Showcasing Digital
             <span className="block text-cyan-400 mt-2">Excellence</span>
           </h1>
-          
+
           <p className="text-xl text-blue-200/80 max-w-3xl mx-auto">
-            Explore our portfolio of innovative projects that demonstrate our expertise 
+            Explore our portfolio of innovative projects that demonstrate our expertise
             in creating cutting-edge digital solutions across various industries.
           </p>
         </motion.div>
@@ -246,11 +254,10 @@ export default function ProjectsPage() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeFilter === category
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === category
                   ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30'
                   : 'bg-blue-900/40 border border-blue-400/30 text-blue-200 hover:bg-blue-800/40 hover:border-blue-300/40'
-              }`}
+                }`}
             >
               {category}
             </motion.button>
@@ -270,7 +277,7 @@ export default function ProjectsPage() {
             >
               {/* 3D Card Effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
-              
+
               <div className="relative bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border border-blue-400/30 rounded-2xl overflow-hidden backdrop-blur-xl h-full">
                 {/* Image Container */}
                 <div className="relative h-48 overflow-hidden">
@@ -284,14 +291,14 @@ export default function ProjectsPage() {
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  
+
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${project.color} text-white`}>
                       {project.category}
                     </span>
                   </div>
-                  
+
                   {/* Live Indicator */}
                   <div className="absolute top-4 right-4 flex items-center gap-1">
                     {project.status === "demo" ? (
@@ -349,7 +356,7 @@ export default function ProjectsPage() {
                       <Eye className="w-4 h-4" />
                       {project.status === "demo" ? "View Demo" : "Visit Project"}
                     </motion.button>
-                    
+
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -428,7 +435,7 @@ export default function ProjectsPage() {
                 Have a Project in Mind?
               </h2>
               <p className="text-xl text-blue-200/80 mb-8 max-w-2xl mx-auto">
-                Let&apos;s discuss how we can bring your vision to life with our 
+                Let&apos;s discuss how we can bring your vision to life with our
                 expertise in creating exceptional digital experiences.
               </p>
               <motion.button

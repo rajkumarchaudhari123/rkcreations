@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight, Sparkles, Code, Palette, Rocket, Globe, Brain, Zap } from "lucide-react";
+import { ChevronDown, ArrowRight, Sparkles, Code, Palette, Rocket, Globe, Brain, Zap, Network, Cpu } from "lucide-react";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiExpo, SiMysql } from "react-icons/si";
 import Image from "next/image";
@@ -36,6 +36,9 @@ const technologies = [
   { name: "Node.js", icon: <Zap className="w-6 h-6 md:w-8 md:h-8" /> },
   { name: "Firebase", icon: <Rocket className="w-6 h-6 md:w-8 md:h-8" /> },
   { name: "SQL", icon: <Brain className="w-6 h-6 md:w-8 md:h-8" /> },
+  { name: "Artificial Intelligence", icon: <Brain className="w-6 h-6 md:w-8 md:h-8" /> },
+  { name: "Machine Learning", icon: <Cpu className="w-6 h-6 md:w-8 md:h-8" /> },
+  { name: "Deep Learning", icon: <Network className="w-6 h-6 md:w-8 md:h-8" /> },
   { name: "AI Tools", icon: <Sparkles className="w-6 h-6 md:w-8 md:h-8" /> },
 ];
 
@@ -180,11 +183,10 @@ export default function Home() {
           <button
             key={i}
             onClick={() => scrollToSection(i)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSection === i
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSection === i
                 ? "bg-[#ff1493] scale-125"
                 : "bg-white/30 hover:bg-white/50"
-            }`}
+              }`}
           />
         ))}
       </div>
@@ -262,7 +264,7 @@ export default function Home() {
             >
               <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-[#ff1493] mx-auto" />
             </motion.div>
-            
+
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 font-space-grotesk text-white leading-tight">
               <span className="block">We Build</span>
               <span className="block text-[#ff1493] mt-2 relative">
@@ -275,8 +277,8 @@ export default function Home() {
               </span>
               <span className="block mt-2">Digital Experiences</span>
             </h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-10 font-inter text-white px-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -284,7 +286,7 @@ export default function Home() {
             >
               Web • App • AI • Design • Branding
             </motion.p>
-            
+
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -344,14 +346,14 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">01</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-pink-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 md:mb-8 font-space-grotesk text-white leading-tight"
             initial={{ opacity: 0, y: 20 }}
@@ -360,14 +362,14 @@ export default function Home() {
           >
             We Transform Ideas Into <span className="text-[#ff1493]">Digital Reality</span>
           </motion.h2>
-          
+
           <motion.p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed font-inter text-white"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            RK Creations is a digital agency focused on creating immersive, scalable, 
+            RK Creations is a digital agency focused on creating immersive, scalable,
             and future-ready experiences that push boundaries and deliver results.
           </motion.p>
         </motion.div>
@@ -411,14 +413,14 @@ export default function Home() {
               transition={{ delay: 0.2 }}
             >
               <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">02</span>
-              <motion.div 
+              <motion.div
                 className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-purple-500"
                 initial={{ width: 0 }}
                 whileInView={{ width: "5rem" }}
                 transition={{ duration: 0.8 }}
               />
             </motion.div>
-            
+
             <motion.h2
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 font-space-grotesk text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
@@ -427,8 +429,8 @@ export default function Home() {
             >
               Built with <span className="text-[#ff1493]">Vision & Purpose</span>
             </motion.h2>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-4 md:space-y-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -471,7 +473,7 @@ export default function Home() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48 border-4 border-[#ff1493]/20 rounded-full" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 border-2 border-pink-500/10 rounded-full" />
               </motion.div>
-              
+
               {/* Floating profile */}
               <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
@@ -517,14 +519,14 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">03</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-pink-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 md:mb-12 font-space-grotesk text-white leading-tight"
             initial={{ opacity: 0, y: 20 }}
@@ -533,7 +535,7 @@ export default function Home() {
           >
             Digital Solutions That <span className="text-[#ff1493]">Scale</span>
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {[
               { title: "Web Platforms", desc: "Scalable web applications", icon: "🌐" },
@@ -554,7 +556,7 @@ export default function Home() {
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 animate-shimmer" />
-                
+
                 <motion.div
                   className="text-3xl md:text-4xl mb-3 md:mb-4"
                   animate={{ rotateY: 360 }}
@@ -562,7 +564,7 @@ export default function Home() {
                 >
                   {item.icon}
                 </motion.div>
-                
+
                 <motion.div
                   className="text-3xl md:text-4xl text-[#ff1493]/20 mb-3 md:mb-4 font-orbitron"
                   initial={{ opacity: 0 }}
@@ -571,11 +573,11 @@ export default function Home() {
                 >
                   0{index + 1}
                 </motion.div>
-                
+
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-4 text-white group-hover:text-[#ff1493] transition-colors">
                   {item.title}
                 </h3>
-                
+
                 <p className="text-sm sm:text-base text-gray-400 text-white">
                   {item.desc}
                 </p>
@@ -599,7 +601,7 @@ export default function Home() {
             animate={{ x: ["100%", "0%", "100%"] }}
             transition={{ duration: 4, repeat: Infinity, delay: 2 }}
           />
-          
+
           {/* Floating particles */}
           {[...Array(15)].map((_, i) => (
             <motion.div
@@ -637,14 +639,14 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">04</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-pink-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold bg-gradient-to-r from-[#ff512f] via-[#ff1493] to-[#dd2476] text-transparent bg-clip-text text-center mb-8 md:mb-16 leading-tight"
             initial={{ opacity: 0, y: 40 }}
@@ -652,7 +654,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Built Using <motion.span 
+            Built Using <motion.span
               className="inline-block"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -667,15 +669,15 @@ export default function Home() {
                 key={tool.name}
                 initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: index * 0.1,
                   type: "spring",
                   stiffness: 100
                 }}
                 viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   y: -10,
                   rotate: [0, 5, -5, 0],
                   transition: { duration: 0.3 }
@@ -741,21 +743,21 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">05</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-pink-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 md:mb-12 text-center font-space-grotesk text-white leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Simple Process, <motion.span 
+            Simple Process, <motion.span
               className="text-[#ff1493] inline-block"
               animate={{ textShadow: ["0 0 10px #ff1493", "0 0 20px #ff1493", "0 0 10px #ff1493"] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -763,7 +765,7 @@ export default function Home() {
               Extraordinary Results
             </motion.span>
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {processSteps.map((step, index) => (
               <motion.div
@@ -771,7 +773,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
+                transition={{
                   delay: index * 0.2,
                   type: "spring",
                   stiffness: 100
@@ -799,10 +801,10 @@ export default function Home() {
                     </div>
                   </motion.div>
                 )}
-                
+
                 <motion.div
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#ff1493]/20 mb-3 md:mb-4 font-orbitron"
-                  animate={{ 
+                  animate={{
                     textShadow: [
                       "0 0 20px rgba(255,20,147,0)",
                       "0 0 20px rgba(255,20,147,0.5)",
@@ -813,7 +815,7 @@ export default function Home() {
                 >
                   {step.number}
                 </motion.div>
-                
+
                 <motion.h3
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-4 text-white"
                   initial={{ opacity: 0 }}
@@ -822,7 +824,7 @@ export default function Home() {
                 >
                   {step.title}
                 </motion.h3>
-                
+
                 <motion.p
                   className="text-sm sm:text-base text-gray-400 text-white"
                   initial={{ opacity: 0 }}
@@ -831,7 +833,7 @@ export default function Home() {
                 >
                   {step.description}
                 </motion.p>
-                
+
                 {index < 2 && (
                   <motion.div
                     className="lg:hidden block w-full h-px my-6 sm:my-8 bg-gradient-to-r from-[#ff1493] to-transparent"
@@ -885,14 +887,14 @@ export default function Home() {
               transition={{ delay: 0.2 }}
             >
               <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">06</span>
-              <motion.div 
+              <motion.div
                 className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-purple-500"
                 initial={{ width: 0 }}
                 whileInView={{ width: "5rem" }}
                 transition={{ duration: 0.8 }}
               />
             </motion.div>
-            
+
             <motion.h2
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 font-space-grotesk text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
@@ -901,7 +903,7 @@ export default function Home() {
             >
               We Work With <span className="text-[#ff1493]">Top Brands & Startups</span>
             </motion.h2>
-            
+
             <motion.p
               className="text-base sm:text-lg md:text-xl text-gray-300 text-white"
               initial={{ opacity: 0 }}
@@ -934,8 +936,8 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1, 
+                  whileHover={{
+                    scale: 1.1,
                     y: -10,
                     rotateY: 180,
                     transition: { duration: 0.5 }
@@ -1023,23 +1025,23 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">07</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-pink-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 md:mb-12 font-space-grotesk text-white leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Impactful Projects, <motion.span 
+            Impactful Projects, <motion.span
               className="text-[#ff1493] inline-block"
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
                 rotate: [0, 5, -5, 0]
               }}
@@ -1048,7 +1050,7 @@ export default function Home() {
               Measurable Results
             </motion.span>
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {[
               { metric: "100%", label: "Client Satisfaction", icon: "🎯" },
@@ -1060,13 +1062,13 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
+                transition={{
                   delay: index * 0.2,
                   type: "spring",
                   stiffness: 100
                 }}
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
@@ -1078,7 +1080,7 @@ export default function Home() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
-                
+
                 <motion.div
                   className="text-2xl md:text-3xl mb-3 md:mb-4"
                   animate={{ scale: [1, 1.5, 1] }}
@@ -1086,10 +1088,10 @@ export default function Home() {
                 >
                   {item.icon}
                 </motion.div>
-                
+
                 <motion.div
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#ff1493] mb-2 md:mb-4"
-                  animate={{ 
+                  animate={{
                     textShadow: [
                       "0 0 20px rgba(255,20,147,0)",
                       "0 0 20px rgba(255,20,147,0.5)",
@@ -1100,7 +1102,7 @@ export default function Home() {
                 >
                   {item.metric}
                 </motion.div>
-                
+
                 <motion.div
                   className="text-base sm:text-lg md:text-xl font-semibold text-white"
                   initial={{ opacity: 0 }}
@@ -1112,9 +1114,9 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          
+
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               background: "linear-gradient(45deg, #ff1493, #ff512f)",
               transition: { duration: 0.3 }
@@ -1172,23 +1174,23 @@ export default function Home() {
             transition={{ delay: 0.2 }}
           >
             <span className="font-orbitron text-[#ff1493] text-xl md:text-2xl">08</span>
-            <motion.div 
+            <motion.div
               className="w-16 md:w-20 h-px bg-gradient-to-r from-[#ff1493] to-purple-500"
               initial={{ width: 0 }}
               whileInView={{ width: "5rem" }}
               transition={{ duration: 0.8 }}
             />
           </motion.div>
-          
+
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 md:mb-8 font-space-grotesk text-white leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Ready to Build Something <motion.span 
+            Ready to Build Something <motion.span
               className="text-[#ff1493] inline-block"
-              animate={{ 
+              animate={{
                 scale: [1, 1.1, 1],
                 textShadow: ["0 0 10px #ff1493", "0 0 30px #ff1493", "0 0 10px #ff1493"]
               }}
@@ -1197,7 +1199,7 @@ export default function Home() {
               Powerful?
             </motion.span>
           </motion.h2>
-          
+
           <motion.p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-12 font-inter text-white"
             initial={{ opacity: 0 }}
@@ -1206,9 +1208,9 @@ export default function Home() {
           >
             Let&apos;s create your next digital masterpiece together.
           </motion.p>
-          
+
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               boxShadow: "0 0 40px rgba(255, 20, 147, 0.5)"
             }}
@@ -1256,8 +1258,8 @@ export default function Home() {
 function ToolCard({ name, icon, index }: { name: string; icon: React.ReactNode; index: number }) {
   return (
     <motion.div
-      whileHover={{ 
-        scale: 1.05, 
+      whileHover={{
+        scale: 1.05,
         y: -5,
         boxShadow: "0 20px 40px rgba(255, 20, 147, 0.3)"
       }}
@@ -1270,23 +1272,23 @@ function ToolCard({ name, icon, index }: { name: string; icon: React.ReactNode; 
         whileHover={{ x: "100%" }}
         transition={{ duration: 0.6 }}
       />
-      
+
       {/* Icon with animation */}
       <motion.div
         className="relative z-10"
-        animate={{ 
+        animate={{
           scale: [1, 1.1, 1],
           rotate: index % 2 === 0 ? [0, 10, -10, 0] : [0, -10, 10, 0]
         }}
-        transition={{ 
-          duration: 3, 
+        transition={{
+          duration: 3,
           repeat: Infinity,
-          delay: index * 0.2 
+          delay: index * 0.2
         }}
       >
         {icon}
       </motion.div>
-      
+
       {/* Tool name with hover effect */}
       <motion.h3
         className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg font-semibold text-gray-800 text-center relative z-10"
@@ -1295,7 +1297,7 @@ function ToolCard({ name, icon, index }: { name: string; icon: React.ReactNode; 
       >
         {name}
       </motion.h3>
-      
+
       {/* Decorative dot */}
       <motion.div
         className="absolute bottom-2 right-2 w-2 h-2 bg-[#ff1493] rounded-full opacity-0 group-hover:opacity-100"
