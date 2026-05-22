@@ -55,9 +55,9 @@ export default function ProjectsPage() {
       name: "Smart Traffic AI",
       link: "https://traffic-ai-production-c296.up.railway.app/",
       img: "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "FinTech AI",
+      category: " AI",
       description: "AI-powered taffic management and optimization system for smart cities",
-      tags: ["Next.js", "AI/ML", "Firebase"],
+      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "FastApi"],
       color: "from-indigo-500 to-blue-500"
     },
     {
@@ -66,7 +66,7 @@ export default function ProjectsPage() {
       img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: " AI",
       description: "Handwritten text recognition system using deep learning techniques for accurate transcription of handwritten documents",
-      tags: ["Next.js", "AI/ML", "Firebase"],
+      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
       color: "from-indigo-500 to-blue-500"
     },
     {
@@ -82,7 +82,7 @@ export default function ProjectsPage() {
       name: "Jarvish AI Assistant",
       link: "https://neuro-twin-gold.vercel.app/",
       img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-      category: "AI Assistant",
+      category: "AI",
       description: "Intelligent AI assistant with natural language processing",
       tags: ["Next.js", "OpenAI", "Tailwind"],
       color: "from-cyan-500 to-blue-500"
