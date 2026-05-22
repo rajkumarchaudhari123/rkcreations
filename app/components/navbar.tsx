@@ -58,6 +58,7 @@ export default function Navbar() {
     { name: 'Portfolio', path: '/web', icon: '📁' },
     { name: 'About', path: '/about', icon: '👤' },
     { name: 'Contact', path: '/contact', icon: '📞' },
+    // { name: 'AI Tools', path: '/ai-tools', icon: '🤖' },
   ];
 
   const toggleMenu = () => {

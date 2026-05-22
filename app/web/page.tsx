@@ -52,6 +52,24 @@ export default function ProjectsPage() {
       color: "from-indigo-500 to-blue-500"
     },
     {
+      name: "Smart Traffic AI",
+      link: "https://traffic-ai-production-c296.up.railway.app/",
+      img: "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: "FinTech AI",
+      description: "AI-powered taffic management and optimization system for smart cities",
+      tags: ["Next.js", "AI/ML", "Firebase"],
+      color: "from-indigo-500 to-blue-500"
+    },
+    {
+      name: "HandWritten Text Recognition",
+      link: "https://res.cloudinary.com/dpfdj5xc0/image/upload/v1779445563/Screenshot_20260522-155354_LinkedIn_2_iza8sf.jpg",
+      img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: " AI",
+      description: "Handwritten text recognition system using deep learning techniques for accurate transcription of handwritten documents",
+      tags: ["Next.js", "AI/ML", "Firebase"],
+      color: "from-indigo-500 to-blue-500"
+    },
+    {
       name: "Cyber Security Dashboard",
       link: "https://virtualcyberlabs.com",
       img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",

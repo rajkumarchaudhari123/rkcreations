@@ -7,6 +7,7 @@ import { ChevronDown, ArrowRight, Sparkles, Code, Palette, Rocket, Globe, Brain,
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiExpo, SiMysql } from "react-icons/si";
 import Image from "next/image";
+import Link from "next/link";
 
 // Unsplash images for slideshow
 const unsplashImages = [
@@ -124,10 +125,62 @@ const spinAnimation = `
 }
 `;
 
+// Helper to generate random particle data
+type ParticleData = { x: number; y: number; x2: number; duration: number; delay: number; scale?: number; scale2?: number };
+type DotData = { left: string; top: string; duration: number; delay: number };
+type LineData = { x1: string; x2: string };
+
+function generateParticles(count: number, opts?: { withScale?: boolean }): ParticleData[] {
+  return Array.from({ length: count }, () => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    x2: Math.random() * 100 - 50,
+    duration: Math.random() * 10 + 10,
+    delay: Math.random() * 5,
+    ...(opts?.withScale ? { scale: Math.random() * 0.5 + 0.5, scale2: Math.random() + 0.5 } : {}),
+  }));
+}
+
+function generateDots(count: number, durBase = 3, durRange = 2, delayRange = 2): DotData[] {
+  return Array.from({ length: count }, () => ({
+    left: Math.random() * 100 + "%",
+    top: Math.random() * 100 + "%",
+    duration: Math.random() * durRange + durBase,
+    delay: Math.random() * delayRange,
+  }));
+}
+
+function generateLines(count: number): LineData[] {
+  return Array.from({ length: count }, () => ({
+    x1: Math.random() * 100 + "%",
+    x2: Math.random() * 100 + "%",
+  }));
+}
+
 export default function Home() {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { scrollY } = useScroll();
+
+  // Pre-generated random data for particles (client-side only)
+  const [heroParticles, setHeroParticles] = useState<ParticleData[]>([]);
+  const [founderParticles, setFounderParticles] = useState<ParticleData[]>([]);
+  const [toolsParticles, setToolsParticles] = useState<ParticleData[]>([]);
+  const [processLines, setProcessLines] = useState<LineData[]>([]);
+  const [brandsDots, setBrandsDots] = useState<DotData[]>([]);
+  const [statsDots, setStatsDots] = useState<DotData[]>([]);
+  const [ctaParticles, setCtaParticles] = useState<ParticleData[]>([]);
+
+  // Generate all random values client-side only
+  useEffect(() => {
+    setHeroParticles(generateParticles(20));
+    setFounderParticles(generateParticles(10));
+    setToolsParticles(generateParticles(15, { withScale: true }));
+    setProcessLines(generateLines(20));
+    setBrandsDots(generateDots(50, 2, 3, 2));
+    setStatsDots(generateDots(30, 10, 10, 5));
+    setCtaParticles(generateParticles(25));
+  }, []);
 
   // Auto slideshow for hero images
   useEffect(() => {
@@ -227,22 +280,22 @@ export default function Home() {
 
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {heroParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#ff1493] rounded-full"
               initial={{
-                x: Math.random() * 100 + "vw",
-                y: Math.random() * 100 + "vh",
+                x: p.x + "vw",
+                y: p.y + "vh",
               }}
               animate={{
                 y: [null, "-100vh"],
-                x: [null, Math.random() * 100 - 50 + "vw"],
+                x: [null, p.x2 + "vw"],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: p.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: p.delay,
               }}
             />
           ))}
@@ -296,13 +349,15 @@ export default function Home() {
                 Start Your Project
                 <ArrowRight className="group-hover:translate-x-2 transition-transform w-4 h-4 sm:w-5 sm:h-5" />
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:border-white/50 hover:bg-white/5 transition-all text-sm sm:text-base w-full sm:w-auto"
-              >
-                View Our Work
-              </motion.button>
+              <Link href="/web">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:border-white/50 hover:bg-white/5 transition-all text-sm sm:text-base w-full sm:w-auto"
+                >
+                  View Our Work
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
         </motion.div>
@@ -379,22 +434,22 @@ export default function Home() {
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative">
         {/* Floating elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(10)].map((_, i) => (
+          {founderParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-[#ff1493]/20 rounded-full"
               initial={{
-                x: Math.random() * 100 + "vw",
-                y: Math.random() * 100 + "vh",
+                x: p.x + "vw",
+                y: p.y + "vh",
               }}
               animate={{
-                y: [null, Math.random() * 100 - 50 + "vh"],
-                x: [null, Math.random() * 100 - 50 + "vw"],
+                y: [null, p.x2 + "vh"],
+                x: [null, p.x2 + "vw"],
               }}
               transition={{
-                duration: Math.random() * 15 + 15,
+                duration: p.duration + 5,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: p.delay,
               }}
             />
           ))}
@@ -603,24 +658,24 @@ export default function Home() {
           />
 
           {/* Floating particles */}
-          {[...Array(15)].map((_, i) => (
+          {toolsParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#ff1493] rounded-full"
               initial={{
-                x: Math.random() * 100 + "vw",
-                y: Math.random() * 100 + "vh",
-                scale: Math.random() * 0.5 + 0.5,
+                x: p.x + "vw",
+                y: p.y + "vh",
+                scale: p.scale ?? 0.75,
               }}
               animate={{
                 y: [null, "-100vh"],
-                x: [null, Math.random() * 100 - 50 + "vw"],
-                scale: [null, Math.random() + 0.5],
+                x: [null, p.x2 + "vw"],
+                scale: [null, p.scale2 ?? 1],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: p.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: p.delay,
               }}
             />
           ))}
@@ -713,12 +768,12 @@ export default function Home() {
                 <stop offset="100%" stopColor="#ff1493" stopOpacity="0" />
               </linearGradient>
             </defs>
-            {[...Array(20)].map((_, i) => (
+            {processLines.map((line, i) => (
               <motion.line
                 key={i}
-                x1={Math.random() * 100 + "%"}
+                x1={line.x1}
                 y1="0%"
-                x2={Math.random() * 100 + "%"}
+                x2={line.x2}
                 y2="100%"
                 stroke="url(#gradient)"
                 strokeWidth="1"
@@ -852,22 +907,22 @@ export default function Home() {
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative">
         {/* Animated background pattern */}
         <div className="absolute inset-0 opacity-5">
-          {[...Array(50)].map((_, i) => (
+          {brandsDots.map((dot, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 border border-[#ff1493] rounded-full"
               style={{
-                left: Math.random() * 100 + "%",
-                top: Math.random() * 100 + "%",
+                left: dot.left,
+                top: dot.top,
               }}
               animate={{
                 scale: [0, 1, 0],
                 opacity: [0, 0.5, 0],
               }}
               transition={{
-                duration: Math.random() * 3 + 2,
+                duration: dot.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: dot.delay,
               }}
             />
           ))}
@@ -989,22 +1044,22 @@ export default function Home() {
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative">
         {/* Animated stats background */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(30)].map((_, i) => (
+          {statsDots.map((dot, i) => (
             <motion.div
               key={i}
               className="absolute text-[#ff1493]/10 font-bold text-4xl md:text-6xl"
               style={{
-                left: Math.random() * 100 + "%",
-                top: Math.random() * 100 + "%",
+                left: dot.left,
+                top: dot.top,
               }}
               animate={{
                 y: [0, -100, 0],
                 opacity: [0, 0.3, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: dot.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: dot.delay,
               }}
             >
               {["100%", "50+", "40%"][i % 3]}
@@ -1140,22 +1195,22 @@ export default function Home() {
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ duration: 4, repeat: Infinity }}
           />
-          {[...Array(25)].map((_, i) => (
+          {ctaParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-[#ff1493] rounded-full"
               initial={{
-                x: Math.random() * 100 + "vw",
-                y: Math.random() * 100 + "vh",
+                x: p.x + "vw",
+                y: p.y + "vh",
               }}
               animate={{
                 y: [null, "-100vh"],
-                x: [null, Math.random() * 100 - 50 + "vw"],
+                x: [null, p.x2 + "vw"],
               }}
               transition={{
-                duration: Math.random() * 15 + 15,
+                duration: p.duration + 5,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: p.delay,
               }}
             />
           ))}
