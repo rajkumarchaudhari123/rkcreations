@@ -70,6 +70,15 @@ export default function ProjectsPage() {
       color: "from-indigo-500 to-blue-500"
     },
     {
+      name: "Smart Fintect AI",
+      link: "https://smart-fintech-ai.onrender.com/",
+      img: "https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: " AI",
+      description: "Smart fintech AI platform for automated financial analysis and decision-making",
+      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
+      color: "from-indigo-500 to-blue-500"
+    },
+    {
       name: "Cyber Security Dashboard",
       link: "https://virtualcyberlabs.com",
       img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
