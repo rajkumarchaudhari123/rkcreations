@@ -16,87 +16,27 @@ const Logo = () => {
     <Link href="/" className="relative group block">
       <motion.div
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.05, y: -2 }}
+        whileHover={{ scale: 1.08, y: -2 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
         className="relative"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        {/* 3D floating effect */}
-        <motion.div
-          animate={{ y: isHovering ? -5 : 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="relative"
-        >
-          {/* Outer glow */}
-          <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-blue-600/30 blur-2xl rounded-3xl opacity-60" />
-          
-          {/* 3D depth layers */}
-          <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/20 to-cyan-400/20 rounded-2xl blur-md" />
-          
-          {/* Main logo container with glass effect */}
-          <div className="relative bg-gradient-to-br from-blue-900/40 via-blue-800/40 to-cyan-900/40 border border-blue-500/30 rounded-2xl px-4 py-2 md:px-5 md:py-3 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,100,255,0.2)]">
-            {/* Inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-400/10 rounded-2xl" />
-            
-            <div className="relative flex items-center gap-3">
-              {/* Dynamic Logo Image from favicon/assets */}
-              <motion.div
-                animate={{ rotate: isHovering ? 360 : 0 }}
-                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-                className="relative"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl blur opacity-40 animate-pulse" />
-                <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-blue-800/80 to-cyan-900/80 border border-blue-400/50 p-1 flex items-center justify-center shadow-inner overflow-hidden">
-                  <Image
-                    src="/rklogo.PNG"
-                    alt="RK Creations Logo"
-                    width={36}
-                    height={36}
-                    className="object-contain w-full h-full rounded-lg"
-                    priority
-                  />
-                </div>
-              </motion.div>
-              
-              <div className="flex flex-col">
-                <span className="font-bold text-xs md:text-sm bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent tracking-wider leading-none">
-                  RK
-                </span>
-                <span className="font-extrabold text-base md:text-lg bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent tracking-tight leading-none mt-0.5">
-                  Creations
-                </span>
-              </div>
-
-              {/* Animated sparkle */}
-              <motion.div
-                animate={{ rotate: 360, scale: isHovering ? 1.2 : 1 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="hidden md:block"
-              >
-                <Sparkles className="w-4 h-4 text-cyan-300" />
-              </motion.div>
-            </div>
-            
-            {/* Floating particles - Only on hover */}
-            {isHovering && (
-              <>
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 rounded-full blur-sm"
-                />
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full blur-sm"
-                />
-              </>
-            )}
-          </div>
-        </motion.div>
+        {/* Pink Glow behind the logo */}
+        <div className="absolute -inset-1.5 bg-gradient-to-r from-[#ff1493] to-pink-500 rounded-full blur-md opacity-50 group-hover:opacity-85 transition-opacity duration-300 animate-pulse" />
+        
+        {/* Bright white circular bubble logo container to make the dark logo details perfectly visible */}
+        <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-white shadow-[0_0_15px_rgba(255,20,147,0.4)] p-1 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-[0_0_25px_rgba(255,20,147,0.75)]">
+          <Image
+            src="/rklogo.PNG"
+            alt="RK Creations Logo"
+            width={48}
+            height={48}
+            className="object-contain w-full h-full rounded-full"
+            priority
+          />
+        </div>
       </motion.div>
     </Link>
   );
