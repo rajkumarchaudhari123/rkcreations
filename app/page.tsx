@@ -125,7 +125,7 @@ export default function Home() {
     <div className="relative">
 
       {/* ======================== HERO SECTION ======================== */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+      <section className="relative min-h-[80vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* Slideshow */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -192,49 +192,49 @@ export default function Home() {
         )}
 
         <motion.div
-          className="relative z-10 text-center w-full max-w-4xl mx-auto px-4 py-8 rounded-3xl bg-black/35 sm:bg-transparent backdrop-blur-[2px] sm:backdrop-blur-none border border-white/5 sm:border-transparent shadow-[0_8px_32px_rgba(0,0,0,0.37)] sm:shadow-none"
+          className="relative z-10 text-center w-full max-w-4xl mx-auto px-3 py-5 sm:py-8 sm:px-6 rounded-2xl sm:rounded-3xl bg-black/35 sm:bg-transparent backdrop-blur-[2px] sm:backdrop-blur-none border border-white/5 sm:border-transparent shadow-[0_8px_32px_rgba(0,0,0,0.37)] sm:shadow-none"
           style={{ y: heroY }}
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-[#ff1493] mx-auto mb-4 md:mb-6" />
+            <Sparkles className="w-6 h-6 sm:w-12 sm:h-12 md:w-14 md:h-14 text-[#ff1493] mx-auto mb-2 sm:mb-6" />
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 text-white leading-tight">
+            <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-3 sm:mb-6 text-white leading-tight">
               <span className="block">We Build</span>
               <span className="block text-[#ff1493] mt-1 sm:mt-2">Future-Ready</span>
               <span className="block mt-1 sm:mt-2">Digital Experiences</span>
             </h1>
 
             <motion.p
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto"
+              className="text-xs sm:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-8 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3 }}
             >
               Web • App • AI • Design • Branding
             </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center">
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-[#ff1493] to-pink-600 text-white font-semibold rounded-full flex items-center gap-2 group hover:shadow-lg hover:shadow-[#ff1493]/25 transition-all text-sm sm:text-base w-full sm:w-auto justify-center animate-pulse-glow"
+                  className="px-4 py-2.5 sm:px-8 sm:py-3.5 bg-gradient-to-r from-[#ff1493] to-pink-600 text-white font-semibold rounded-full flex items-center gap-1.5 group hover:shadow-lg hover:shadow-[#ff1493]/25 transition-all text-xs sm:text-base whitespace-nowrap justify-center animate-pulse-glow"
                 >
-                  Start Your Project
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform w-4 h-4" />
+                  Start Project
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform w-3.5 h-3.5" />
                 </motion.button>
               </Link>
               <Link href="/web">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 sm:px-8 sm:py-3.5 border-2 border-white/30 text-white font-semibold rounded-full hover:border-white/50 hover:bg-white/5 transition-all text-sm sm:text-base w-full sm:w-auto"
+                  className="px-4 py-2.5 sm:px-8 sm:py-3.5 border border-white/30 text-white font-semibold rounded-full hover:border-white/50 hover:bg-white/5 transition-all text-xs sm:text-base whitespace-nowrap justify-center"
                 >
-                  View Our Work
+                  View Work
                 </motion.button>
               </Link>
             </div>
@@ -252,7 +252,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 01: WHO WE ARE ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-12 md:py-24">
         {/* Background glow - reduced from 2 to 1 for performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-[#ff1493]/8 rounded-full blur-3xl" />
@@ -279,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 02: FOUNDER ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative py-12 md:py-24">
         {mounted && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {FOUNDER_PARTICLES.map((p, i) => (
@@ -339,7 +339,7 @@ export default function Home() {
             className="relative mt-6 md:mt-0"
           >
             <motion.div
-              className="relative h-[280px] sm:h-[320px] md:h-[380px] w-full rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#ff1493]/5 to-pink-500/5"
+              className="relative h-[220px] sm:h-[320px] md:h-[380px] w-full rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#ff1493]/5 to-pink-500/5"
               whileHover={{ scale: 1.02 }}
             >
               {/* Rotating ring */}
@@ -358,8 +358,8 @@ export default function Home() {
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 rounded-full border-4 border-[#ff1493]/30 mx-auto mb-3 flex items-center justify-center bg-gradient-to-br from-[#ff1493]/10 to-pink-500/10 backdrop-blur-sm">
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#ff1493]">R</span>
+                <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 rounded-full border-4 border-[#ff1493]/30 mx-auto mb-3 flex items-center justify-center bg-gradient-to-br from-[#ff1493]/10 to-pink-500/10 backdrop-blur-sm">
+                  <span className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#ff1493]">R</span>
                 </div>
                 <div className="text-white/80 text-base md:text-lg">
                   Visionary Leader
@@ -371,7 +371,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 03: WHAT WE BUILD ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-12 md:py-24">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(to right, #888 1px, transparent 1px),
@@ -420,7 +420,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 04: TOOLS ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden py-12 md:py-24">
         {/* Top/bottom accent lines */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff1493]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500/30 to-transparent" />
@@ -475,14 +475,14 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="mt-8 md:mt-12 text-gray-500 text-xs sm:text-sm">
+          <p className="mt-6 md:mt-12 text-gray-500 text-xs sm:text-sm">
             Modern Stack • Scalable Architecture • Optimal Performance
           </p>
         </motion.div>
       </section>
 
       {/* ======================== SECTION 05: OUR PROCESS ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -532,7 +532,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 06: BRANDS ======================== */}
-      <section className="min-h-[60vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[60vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative py-12 md:py-24">
         <div className="max-w-6xl mx-auto w-full px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -576,13 +576,13 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="h-20 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center p-3 group hover:border-[#ff1493]/30 transition-all"
+                className="h-16 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center p-3 group hover:border-[#ff1493]/30 transition-all"
               >
                 <div className="text-center">
-                  <div className="text-sm sm:text-base font-bold text-white group-hover:text-[#ff1493] transition-colors">
+                  <div className="text-xs sm:text-base font-bold text-white group-hover:text-[#ff1493] transition-colors">
                     {brand.name.split(" ")[0]}
                   </div>
-                  <div className="text-[10px] sm:text-xs text-gray-500">
+                  <div className="text-[9px] sm:text-xs text-gray-500">
                     {brand.name.split(" ").slice(1).join(" ")}
                   </div>
                 </div>
@@ -593,7 +593,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 07: STATS ======================== */}
-      <section className="min-h-[70vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-black relative py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -607,7 +607,7 @@ export default function Home() {
             Impactful Projects, <span className="text-[#ff1493]">Measurable Results</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-3 gap-2 sm:gap-6">
             {stats.map((item, index) => (
               <motion.div
                 key={index}
@@ -616,15 +616,15 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
                 whileHover={{ y: -6 }}
-                className="p-5 sm:p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent group hover:border-[#ff1493]/30 transition-all"
+                className="p-3 sm:p-8 rounded-xl md:rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent group hover:border-[#ff1493]/30 transition-all"
               >
-                <div className="text-2xl md:text-3xl mb-3">
+                <div className="text-lg sm:text-3xl mb-1 sm:mb-3">
                   {item.icon}
                 </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#ff1493] mb-2">
+                <div className="text-xl sm:text-4xl md:text-5xl font-bold text-[#ff1493] mb-1 sm:mb-2">
                   {item.metric}
                 </div>
-                <div className="text-sm sm:text-base md:text-lg font-medium text-gray-300">
+                <div className="text-[10px] sm:text-base md:text-lg font-medium text-gray-300">
                   {item.label}
                 </div>
               </motion.div>
@@ -644,7 +644,7 @@ export default function Home() {
       </section>
 
       {/* ======================== SECTION 08: FINAL CTA ======================== */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden py-16 md:py-24">
+      <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden py-12 md:py-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-72 md:h-72 bg-[#ff1493]/5 rounded-full blur-3xl" />
 
@@ -701,7 +701,7 @@ export default function Home() {
           </Link>
 
           {/* Mini footer */}
-          <div className="mt-12 md:mt-16 pt-6 border-t border-white/10">
+          <div className="mt-8 md:mt-16 pt-6 border-t border-white/10">
             <div className="text-lg md:text-xl font-bold mb-2 text-white">
               RK Creations
             </div>
