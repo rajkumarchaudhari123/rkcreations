@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { X, ChevronRight, Sparkles, Zap, Layers } from 'lucide-react';
 
@@ -39,24 +40,33 @@ const Logo = () => {
             {/* Inner glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-400/10 rounded-2xl" />
             
-            <div className="relative flex items-center gap-2">
-              {/* 3D RK badge with floating animation */}
+            <div className="relative flex items-center gap-3">
+              {/* Dynamic Logo Image from favicon/assets */}
               <motion.div
-                animate={{ rotateY: isHovering ? 180 : 0 }}
-                transition={{ duration: 0.6 }}
+                animate={{ rotate: isHovering ? 360 : 0 }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
                 className="relative"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-lg blur opacity-40" />
-                <div className="relative bg-gradient-to-br from-blue-800 to-cyan-800 border border-blue-400/40 rounded-lg px-2 py-1 shadow-inner">
-                  <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent font-bold text-lg md:text-xl">RK</span>
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl blur opacity-40 animate-pulse" />
+                <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-blue-800/80 to-cyan-900/80 border border-blue-400/50 p-1 flex items-center justify-center shadow-inner overflow-hidden">
+                  <Image
+                    src="/rklogo.PNG"
+                    alt="RK Creations Logo"
+                    width={36}
+                    height={36}
+                    className="object-contain w-full h-full rounded-lg"
+                    priority
+                  />
                 </div>
               </motion.div>
               
               <div className="flex flex-col">
-                <h1 className="font-bold text-lg md:text-xl bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent tracking-tight leading-none">
+                <span className="font-bold text-xs md:text-sm bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent tracking-wider leading-none">
+                  RK
+                </span>
+                <span className="font-extrabold text-base md:text-lg bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent tracking-tight leading-none mt-0.5">
                   Creations
-                </h1>
-                <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full mt-1" />
+                </span>
               </div>
 
               {/* Animated sparkle */}
