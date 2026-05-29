@@ -13,7 +13,7 @@ import Link from "next/link";
 const unsplashImages = [
   "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60",
   "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60",
-  "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60"
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60"
 ];
 
 // Brands data
@@ -192,7 +192,7 @@ export default function Home() {
         )}
 
         <motion.div
-          className="relative z-10 text-center w-full max-w-5xl mx-auto px-4"
+          className="relative z-10 text-center w-full max-w-4xl mx-auto px-4 py-8 rounded-3xl bg-black/35 sm:bg-transparent backdrop-blur-[2px] sm:backdrop-blur-none border border-white/5 sm:border-transparent shadow-[0_8px_32px_rgba(0,0,0,0.37)] sm:shadow-none"
           style={{ y: heroY }}
         >
           <motion.div
