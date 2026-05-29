@@ -228,7 +228,7 @@ export default function Home() {
                   <ArrowRight className="group-hover:translate-x-1 transition-transform w-3.5 h-3.5" />
                 </motion.button>
               </Link>
-              <Link href="/web">
+              <Link href="/portfolio">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -631,7 +631,7 @@ export default function Home() {
             ))}
           </div>
 
-          <Link href="/web">
+          <Link href="/portfolio">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

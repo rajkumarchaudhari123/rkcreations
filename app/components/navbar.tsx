@@ -165,7 +165,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: 'Home', path: '/', icon: '🏠' },
-    { name: 'Portfolio', path: '/web', icon: '📁' },
+    { name: 'Portfolio', path: '/portfolio', icon: '📁' },
     { name: 'About', path: '/about', icon: '👤' },
     { name: 'AI Tools', path: '/ai-tools', icon: '🤖' },
     { name: 'Contact', path: '/contact', icon: '📞' },

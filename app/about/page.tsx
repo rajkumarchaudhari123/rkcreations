@@ -438,7 +438,7 @@ export default function AboutPage() {
                   Start Your Project
                 </motion.button>
               </Link>
-              <Link href="/web">
+              <Link href="/portfolio">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.95 }}

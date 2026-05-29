@@ -208,7 +208,7 @@ export default function Footer() {
             <ul className="space-y-4 flex flex-col items-center lg:items-start">
               {[
                 { name: "Home", href: "/" },
-                { name: "Portfolio", href: "/web" },
+                { name: "Portfolio", href: "/portfolio" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" },
               ].map((link, index) => (
