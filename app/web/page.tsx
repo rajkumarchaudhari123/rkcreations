@@ -143,13 +143,12 @@ export default function ProjectsPage() {
     },
     {
       name: "EduLearn Platform",
-      link: "https://edulearn-platform-demo.vercel.app/",
+      link: "https://booksforall.in/",
       img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       category: "EdTech",
       description: "Interactive online learning platform with video courses",
       tags: ["React", "Video.js", "MongoDB"],
       color: "from-violet-500 to-purple-500",
-      status: "demo"
     },
     {
       name: "FitTrack Pro",
