@@ -10,6 +10,7 @@ import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
+  FaGithub,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Sparkles, Rocket, Code, Palette } from "lucide-react";
@@ -296,7 +297,7 @@ export default function Footer() {
                     { icon: <FaTwitter />, color: "from-[#1DA1F2] to-[#1DA1F2]", href: "https://x.com/RajKumar931515?t=D41GK2stCZRxKrY4Mw2Xmg&s=09" },
                     { icon: <FaLinkedinIn />, color: "from-[#0077B5] to-[#0077B5]", href: "https://www.linkedin.com/in/rajkumar-chaudhari-54b9532b5" },
                     { icon: <FaFacebookF />, color: "from-[#1877F2] to-[#1877F2]", href: "https://www.facebook.com/share/16fqau56gv/" },
-                    /* GitHub, Dribbble, and YouTube removed — no active profiles yet */
+                    { icon: <FaGithub />, color: "from-[#24292e] to-[#2f363d]", href: "https://github.com/rajkumarchaudhari123" },
                   ].map((social, index) => (
                     <motion.a
                       key={index}
