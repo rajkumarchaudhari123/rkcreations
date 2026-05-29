@@ -16,57 +16,114 @@ const Logo = () => {
     <Link href="/" className="relative group block">
       <motion.div
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.08, y: -1 }}
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
         className="relative"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        {/* Neon outer pink glow */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-[#ff1493]/20 to-pink-500/20 blur-xl rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-        
-        {/* Main logo image container with glass effect */}
-        <div className="relative w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-black/85 via-zinc-900/80 to-black/85 border border-[#ff1493]/35 p-1.5 flex items-center justify-center shadow-[0_4px_20px_rgba(255,20,147,0.3)] group-hover:border-[#ff1493]/60 transition-all duration-300">
-          {/* Inner pink neon glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ff1493]/10 to-pink-500/10 rounded-full" />
+        {/* 3D floating effect */}
+        <motion.div
+          animate={{ y: isHovering ? -5 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="relative"
+        >
+          {/* Outer glow */}
+          <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-blue-600/30 blur-2xl rounded-3xl opacity-60" />
           
-          <Image
-            src="/rklogo.PNG"
-            alt="RK Creations Logo"
-            width={38}
-            height={38}
-            className="object-contain w-full h-full rounded-full"
-            priority
-          />
-        </div>
+          {/* 3D depth layers */}
+          <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/20 to-cyan-400/20 rounded-2xl blur-md" />
+          
+          {/* Main logo container with glass effect */}
+          <div className="relative bg-gradient-to-br from-blue-900/40 via-blue-800/40 to-cyan-900/40 border border-blue-500/30 rounded-2xl px-4 py-2 md:px-5 md:py-3 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,100,255,0.2)]">
+            {/* Inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-400/10 rounded-2xl" />
+            
+            <div className="relative flex items-center gap-3">
+              {/* Dynamic Logo Image from favicon/assets */}
+              <motion.div
+                animate={{ rotate: isHovering ? 360 : 0 }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+                className="relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl blur opacity-40 animate-pulse" />
+                <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-blue-800/80 to-cyan-900/80 border border-blue-400/50 p-1 flex items-center justify-center shadow-inner overflow-hidden">
+                  <Image
+                    src="/rklogo.PNG"
+                    alt="RK Creations Logo"
+                    width={36}
+                    height={36}
+                    className="object-contain w-full h-full rounded-lg"
+                    priority
+                  />
+                </div>
+              </motion.div>
+              
+              <div className="flex flex-col">
+                <span className="font-bold text-xs md:text-sm bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent tracking-wider leading-none">
+                  RK
+                </span>
+                <span className="font-extrabold text-base md:text-lg bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent tracking-tight leading-none mt-0.5">
+                  Creations
+                </span>
+              </div>
+
+              {/* Animated sparkle */}
+              <motion.div
+                animate={{ rotate: 360, scale: isHovering ? 1.2 : 1 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="hidden md:block"
+              >
+                <Sparkles className="w-4 h-4 text-cyan-300" />
+              </motion.div>
+            </div>
+            
+            {/* Floating particles - Only on hover */}
+            {isHovering && (
+              <>
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 rounded-full blur-sm"
+                />
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full blur-sm"
+                />
+              </>
+            )}
+          </div>
+        </motion.div>
       </motion.div>
     </Link>
   );
 };
 
-// Standalone Desktop Quote Button using main Pink/Hot-Pink Theme
+// Standalone Desktop Quote Button to avoid rendering recreation
 const DesktopQuoteButton = () => {
   return (
     <Link href="/contact" className="hidden lg:block">
       <motion.div
-        className="relative px-6 py-3 rounded-full overflow-hidden group"
-        whileHover={{ scale: 1.05, y: -2 }}
+        className="relative px-6 py-3 rounded-xl overflow-hidden group"
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {/* Pink neon gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#ff1493] to-pink-600 rounded-full shadow-lg group-hover:shadow-[#ff1493]/30 transition-all duration-300" />
-        <div className="absolute inset-0.5 bg-gradient-to-r from-pink-500 to-[#ff1493] rounded-full" />
+        {/* 3D depth layers */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg" />
+        <div className="absolute inset-0.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl" />
         
-        {/* Glass shine sweep */}
-        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[350%] transition-transform duration-800 ease-in-out" />
+        {/* Shine effect */}
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-white/50 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700" />
         
-        {/* Inner subtle glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-full" />
+        {/* Inner glow */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-xl" />
         
         {/* Button content */}
-        <div className="relative flex items-center justify-center gap-1.5">
+        <div className="relative flex items-center justify-center gap-2">
           <span className="font-bold text-white text-sm md:text-base">
             Get a Quote
           </span>
@@ -82,7 +139,7 @@ const DesktopQuoteButton = () => {
   );
 };
 
-// Standalone Mobile Quote Button using Pink Theme
+// Standalone Mobile Quote Button
 interface MobileQuoteButtonProps {
   onClick: () => void;
 }
@@ -91,14 +148,17 @@ const MobileQuoteButton: React.FC<MobileQuoteButtonProps> = ({ onClick }) => {
   return (
     <Link href="/contact" onClick={onClick} className="block w-full">
       <motion.div
-        className="relative w-full py-3.5 rounded-full overflow-hidden group"
+        className="relative w-full py-4 rounded-xl overflow-hidden group"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {/* Pink neon gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#ff1493] to-pink-600 rounded-full shadow-lg" />
-        <div className="absolute inset-0.5 bg-gradient-to-r from-pink-500 to-[#ff1493] rounded-full" />
+        {/* 3D depth layers */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg" />
+        <div className="absolute inset-0.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl" />
+        
+        {/* Inner glow */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-xl" />
         
         {/* Button content */}
         <div className="relative flex items-center justify-center gap-2">
@@ -127,7 +187,7 @@ export default function Navbar() {
     setIsClient(true);
   }, []);
 
-  // Handle scroll boundary cleanly
+  // Handle scroll state change efficiently (only sets state if the state boundary actually changes)
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 20;
@@ -151,7 +211,7 @@ export default function Navbar() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isMenuOpen]);
 
-  // Lock scroll on mobile when menu open
+  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -177,99 +237,99 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Centered Floating Capsule/Island Navbar */}
+      {/* Main Navbar with 3D Blue Background */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", damping: 25 }}
-        className="fixed top-0 left-0 right-0 z-50 w-full px-3 sm:px-6 md:px-8 pt-3 sm:pt-4 pointer-events-none"
-      >
-        <div className={`mx-auto max-w-5xl w-full rounded-full transition-all duration-300 border pointer-events-auto ${
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled 
-            ? 'px-4 py-2 sm:px-6 sm:py-2.5 bg-black/85 backdrop-blur-xl border-[#ff1493]/30 shadow-[0_8px_30px_rgba(255,20,147,0.2)]' 
-            : 'px-4 py-3 sm:px-6 sm:py-3.5 bg-black/40 backdrop-blur-md border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)]'
-        }`}>
+            ? 'py-3 bg-gradient-to-b from-blue-900/90 via-blue-800/90 to-cyan-900/90 backdrop-blur-xl shadow-2xl border-b border-blue-400/20' 
+            : 'py-4 md:py-6 bg-gradient-to-b from-blue-900/40 via-blue-800/40 to-cyan-900/40'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between">
-            {/* Circular Logo Only */}
+            {/* Logo - Standardized standalone element */}
             <div className="z-50">
               <Logo />
             </div>
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-7">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
                 return (
                   <Link key={item.path} href={item.path}>
                     <motion.div
                       className="relative group"
-                      whileHover={{ y: -2 }}
+                      whileHover={{ y: -3 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <div className={`px-3 py-1.5 text-sm font-medium transition-all duration-300 flex items-center gap-1.5 ${
+                      <div className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
                         isActive 
                           ? 'text-white' 
-                          : 'text-gray-300 hover:text-white'
+                          : 'text-blue-200 hover:text-white'
                       }`}>
-                        <span className="text-base">{item.icon}</span>
+                        <span className="text-lg">{item.icon}</span>
                         {item.name}
                         
-                        {/* Pink Neon Underline active indicator */}
+                        {/* Active indicator */}
                         {isActive && (
                           <motion.div 
-                            className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-[#ff1493] to-pink-500 shadow-[0_0_12px_rgba(255,20,147,0.6)]"
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
                             layoutId="activeIndicator"
                             initial={false}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                           />
                         )}
                         
-                        {/* Hover accent line */}
+                        {/* Hover effect */}
                         <motion.div 
-                          className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-[#ff1493]/50 to-pink-500/50"
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400/50 to-cyan-400/50"
                           initial={{ scale: 0 }}
                           whileHover={{ scale: 1 }}
                         />
                       </div>
                       
-                      {/* Gentle Hover pink glow */}
-                      <div className="absolute -inset-2 bg-gradient-to-r from-[#ff1493]/0 to-pink-500/0 group-hover:from-[#ff1493]/5 group-hover:to-pink-500/5 rounded-xl blur-md transition-all duration-300" />
+                      {/* Hover glow */}
+                      <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 rounded-xl blur-md transition-all duration-300" />
                     </motion.div>
                   </Link>
                 );
               })}
               
-              {/* Pink Get a Quote Button */}
-              <div className="ml-3">
+              {/* Desktop Quote Button (Only on desktop) */}
+              <div className="ml-4">
                 <DesktopQuoteButton />
               </div>
             </div>
 
-            {/* Mobile Menu Hamburger Button */}
+            {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center">
               <motion.button
-                className="hamburger-button relative w-11 h-11 flex flex-col items-center justify-center rounded-full bg-gradient-to-br from-zinc-900/60 to-black/60 border border-[#ff1493]/20 backdrop-blur-xl"
+                className="hamburger-button relative w-12 h-12 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-blue-800/40 to-cyan-800/40 border border-blue-400/30 backdrop-blur-xl"
                 onClick={toggleMenu}
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05, rotate: 90 }}
                 aria-label="Toggle menu"
               >
-                {/* Neon blur ring */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#ff1493]/15 to-pink-500/15 blur-md rounded-full" />
+                {/* 3D effect */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-lg rounded-2xl" />
                 
                 <motion.span 
-                  className="relative block w-5 h-0.5 bg-gradient-to-r from-[#ff1493] to-pink-400 rounded-full mb-1"
-                  animate={isMenuOpen ? { rotate: 45, y: 4.5 } : { rotate: 0, y: 0 }}
+                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full mb-1.5"
+                  animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 />
                 <motion.span 
-                  className="relative block w-5 h-0.5 bg-gradient-to-r from-[#ff1493] to-pink-400 rounded-full mb-1"
-                  animate={isMenuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: 20 }}
+                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full mb-1.5"
+                  animate={isMenuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: 24 }}
                   transition={{ duration: 0.2 }}
                 />
                 <motion.span 
-                  className="relative block w-5 h-0.5 bg-gradient-to-r from-[#ff1493] to-pink-400 rounded-full"
-                  animate={isMenuOpen ? { rotate: -45, y: -4.5 } : { rotate: 0, y: 0 }}
+                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full"
+                  animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 />
               </motion.button>
@@ -278,11 +338,11 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Drawer Panel */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* Backdrop with lightweight GPU opacity */}
+            {/* Backdrop with optimized GPU-friendly opacity transition (no expensive backdrop blur) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -292,7 +352,7 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             />
             
-            {/* Mobile Drawer Menu Panel */}
+            {/* Mobile Menu Panel - Responsive max-width, ease-in-out lightweight transitions */}
             <motion.div
               className="mobile-menu fixed inset-y-0 right-0 z-40 w-full max-w-xs sm:max-w-sm lg:hidden shadow-2xl"
               initial={{ x: '100%' }}
@@ -300,21 +360,21 @@ export default function Navbar() {
               exit={{ x: '100%' }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
             >
-              <div className="relative h-full flex flex-col justify-between bg-gradient-to-b from-[#09090b] via-[#09050d] to-[#09090b] border-l border-[#ff1493]/15 overflow-y-auto scrollbar-none">
-                {/* Glowing neon shapes in drawer background */}
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-b from-[#0b0f19] via-[#0f172a] to-[#0b0f19] border-l border-blue-500/20 overflow-y-auto scrollbar-none">
+                {/* 3D Background Effects */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <div className="absolute top-0 left-0 w-64 h-64 bg-[#ff1493]/5 rounded-full blur-3xl" />
-                  <div className="absolute bottom-0 right-0 w-64 h-64 bg-pink-500/5 rounded-full blur-3xl" />
+                  <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
                 </div>
 
                 <div className="flex-1 flex flex-col">
-                  {/* Drawer Header wrapper */}
-                  <div className="pt-20 pb-4 px-6 border-b border-white/5 flex items-center justify-between relative">
+                  {/* Close button inside header wrapper */}
+                  <div className="pt-20 pb-4 px-6 border-b border-blue-400/10 flex items-center justify-between relative">
                     <Logo />
                     
                     <motion.button
                       onClick={() => setIsMenuOpen(false)}
-                      className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff1493]/10 to-pink-500/10 border border-[#ff1493]/40 flex items-center justify-center group"
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 to-cyan-700 border border-blue-400/40 flex items-center justify-center group"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -324,13 +384,13 @@ export default function Navbar() {
 
                   {/* Brand description tag */}
                   <div className="px-6 py-4">
-                    <p className="text-gray-400 text-xs flex items-center gap-1.5 font-medium leading-relaxed">
-                      <Zap className="w-3.5 h-3.5 text-[#ff1493] flex-shrink-0" />
+                    <p className="text-blue-300/80 text-xs flex items-center gap-1.5 font-medium leading-relaxed">
+                      <Zap className="w-3.5 h-3.5 text-cyan-300 flex-shrink-0" />
                       Crafting next-gen digital experiences with cutting-edge tech.
                     </p>
                   </div>
 
-                  {/* Menu Items with matching Pink visual hover highlight */}
+                  {/* Menu Items (no laggy stagger offsets, instant GPU-ready rendering) */}
                   <div className="py-2 px-3 space-y-1">
                     {navItems.map((item) => {
                       const isActive = pathname === item.path;
@@ -341,17 +401,18 @@ export default function Navbar() {
                           onClick={() => setIsMenuOpen(false)}
                           className={`flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 relative overflow-hidden group ${
                             isActive
-                              ? 'bg-gradient-to-r from-[#ff1493]/20 to-pink-500/20 border border-[#ff1493]/30 text-white shadow-lg shadow-[#ff1493]/10'
-                              : 'text-gray-300 hover:text-white hover:bg-[#ff1493]/5'
+                              ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 text-white shadow-lg shadow-blue-500/10'
+                              : 'text-blue-200 hover:text-white hover:bg-blue-500/5'
                           }`}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#ff1493]/0 to-pink-500/0 group-hover:from-[#ff1493]/5 group-hover:to-pink-500/5 transition-all duration-300" />
+                          {/* Background glow on hover */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
                           
                           <div className="relative flex items-center gap-3">
                             <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
                               isActive 
-                                ? 'bg-gradient-to-br from-[#ff1493] to-pink-500 text-white shadow-[0_2px_8px_rgba(255,20,147,0.3)]' 
-                                : 'bg-zinc-900/40 text-gray-400 group-hover:bg-zinc-800/40'
+                                ? 'bg-gradient-to-br from-blue-400 to-cyan-400 text-white' 
+                                : 'bg-blue-900/30 text-blue-300 group-hover:bg-blue-800/40'
                             }`}>
                               <span className="text-base">{item.icon}</span>
                             </div>
@@ -359,7 +420,7 @@ export default function Navbar() {
                           </div>
                           
                           <ChevronRight className={`w-4 h-4 transition-transform ${
-                            isActive ? 'text-[#ff1493]' : 'text-gray-500'
+                            isActive ? 'text-cyan-300' : 'text-blue-400'
                           } group-hover:translate-x-1`} />
                         </Link>
                       );
@@ -367,43 +428,43 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                {/* Mobile Quote button & CTA block in drawer bottom */}
-                <div className="p-6 border-t border-white/5 bg-zinc-950/40 mt-auto space-y-5 relative">
+                {/* Mobile CTA & Contact Section - Placed naturally at the bottom (mt-auto) to avoid overlays on short screens */}
+                <div className="p-6 border-t border-blue-400/10 bg-blue-950/40 mt-auto space-y-5 relative">
                   <div className="space-y-3">
                     <h3 className="text-white font-bold text-sm flex items-center gap-2">
-                      <Layers className="w-4 h-4 text-[#ff1493]" />
+                      <Layers className="w-4 h-4 text-cyan-300" />
                       Ready to Build?
                     </h3>
-                    <p className="text-gray-400 text-xs leading-relaxed">
+                    <p className="text-blue-300/80 text-xs leading-relaxed">
                       Let&apos;s create something extraordinary together.
                     </p>
                     <MobileQuoteButton onClick={() => setIsMenuOpen(false)} />
                   </div>
 
-                  {/* Contact Grid */}
+                  {/* Contact Info Grid */}
                   <div className="grid grid-cols-2 gap-3 text-xs pt-2">
                     <a
                       href="mailto:ceorkcreations@gmail.com"
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-zinc-900/30 border border-white/5 hover:bg-[#ff1493]/5 transition-all group"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff1493]/20 to-pink-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <span className="text-[#ff1493] text-sm">@</span>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <span className="text-cyan-300 text-sm">@</span>
                       </div>
                       <div className="min-w-0">
-                        <p className="text-gray-400 text-[10px] font-bold leading-none">Email</p>
-                        <p className="text-[#ff1493] text-[9px] truncate mt-1">ceorkcreations...</p>
+                        <p className="text-blue-300 text-[10px] font-bold leading-none">Email</p>
+                        <p className="text-cyan-300 text-[9px] truncate mt-1">ceorkcreations...</p>
                       </div>
                     </a>
                     <a
                       href="tel:+919667048566"
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-zinc-900/30 border border-white/5 hover:bg-[#ff1493]/5 transition-all group"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff1493]/20 to-pink-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <span className="text-[#ff1493] text-sm">📞</span>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <span className="text-blue-300 text-sm">📞</span>
                       </div>
                       <div className="min-w-0">
-                        <p className="text-gray-400 text-[10px] font-bold leading-none">Call</p>
-                        <p className="text-[#ff1493] text-[9px] truncate mt-1">+91 9667048566</p>
+                        <p className="text-blue-300 text-[10px] font-bold leading-none">Call</p>
+                        <p className="text-cyan-300 text-[9px] truncate mt-1">+91 9667048566</p>
                       </div>
                     </a>
                   </div>
@@ -414,7 +475,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Spacing padding spacer */}
+      {/* Add padding to main content */}
       <div className="h-20 md:h-24" />
     </>
   );
