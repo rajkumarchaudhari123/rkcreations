@@ -261,7 +261,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="tel:+918800759535"
+                  href="tel:+919667048566"
                   className="flex flex-col sm:flex-row items-center gap-3 text-gray-300 hover:text-white group text-center sm:text-left"
                 >
                   <div className="relative">
@@ -271,7 +271,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Phone</p>
-                    <p className="font-medium text-sm sm:text-base">+91 8800759535</p>
+                    <p className="font-medium text-sm sm:text-base">+91 9667048566</p>
                   </div>
                 </a>
 

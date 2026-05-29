@@ -396,7 +396,7 @@ export default function Navbar() {
                       </div>
                     </a>
                     <a
-                      href="tel:+918800759535"
+                      href="tel:+919667048566"
                       className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
@@ -404,7 +404,7 @@ export default function Navbar() {
                       </div>
                       <div className="min-w-0">
                         <p className="text-blue-300 text-[10px] font-bold leading-none">Call</p>
-                        <p className="text-cyan-300 text-[9px] truncate mt-1">+91 8800759535</p>
+                        <p className="text-cyan-300 text-[9px] truncate mt-1">+91 9667048566</p>
                       </div>
                     </a>
                   </div>
