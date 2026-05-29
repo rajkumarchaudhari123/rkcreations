@@ -7,7 +7,7 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { BsSendCheck } from "react-icons/bs";
 
 export default function ContactPage() {
-  const phoneNumber = "+919667048566";
+  const phoneNumber = "+918800759535";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
