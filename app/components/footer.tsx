@@ -143,12 +143,12 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2"
+            className="lg:col-span-2 text-center lg:text-left flex flex-col items-center lg:items-start"
           >
-            <div className="relative group">
+            <div className="relative group w-full">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-[#ff1493] to-cyan-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000" />
-              <div className="relative p-8 bg-gradient-to-br from-gray-900/90 to-black/90 rounded-3xl border border-white/10 backdrop-blur-xl">
-                <div className="flex items-center gap-4 mb-6">
+              <div className="relative p-8 bg-gradient-to-br from-gray-900/90 to-black/90 rounded-3xl border border-white/10 backdrop-blur-xl flex flex-col items-center lg:items-start">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 mb-6">
                   <div className="relative">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ff1493] to-pink-500 flex items-center justify-center transform rotate-3 group-hover:rotate-6 transition-transform duration-500">
                       <Rocket className="w-8 h-8 text-white" />
@@ -166,7 +166,7 @@ export default function Footer() {
                   We specialize in crafting cutting-edge digital experiences through modern web/app development,
                   AI integration, stunning design, and strategic branding. Let&apos;s build the future together!
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                   <motion.div
                     whileHover={{ scale: 1.05, rotate: 3 }}
                     className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#ff1493]/20 to-pink-500/20 border border-[#ff1493]/30"
@@ -199,11 +199,12 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            className="text-center lg:text-left flex flex-col items-center lg:items-start"
           >
             <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">
               Quick Links
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 flex flex-col items-center lg:items-start">
               {[
                 { name: "Home", href: "/" },
                 { name: "Portfolio", href: "/web" },
@@ -235,16 +236,17 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="text-center lg:text-left flex flex-col items-center lg:items-start"
           >
-            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent w-full text-center lg:text-left">
               Get In Touch
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-6 flex flex-col items-center lg:items-start w-full">
               {/* Contact Info */}
-              <div className="space-y-4">
+              <div className="space-y-4 flex flex-col items-center lg:items-start w-full">
                 <a
                   href="mailto:ceorkcreations@gmail.com"
-                  className="flex items-center gap-3 text-gray-300 hover:text-white group"
+                  className="flex flex-col sm:flex-row items-center gap-3 text-gray-300 hover:text-white group text-center sm:text-left"
                 >
                   <div className="relative">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#ff1493]/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -253,13 +255,13 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
-                    <p className="font-medium">ceorkcreations@gmail.com</p>
+                    <p className="font-medium text-sm sm:text-base">ceorkcreations@gmail.com</p>
                   </div>
                 </a>
 
                 <a
                   href="tel:+919667048566"
-                  className="flex items-center gap-3 text-gray-300 hover:text-white group"
+                  className="flex flex-col sm:flex-row items-center gap-3 text-gray-300 hover:text-white group text-center sm:text-left"
                 >
                   <div className="relative">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -268,11 +270,11 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Phone</p>
-                    <p className="font-medium">+91 9667048566</p>
+                    <p className="font-medium text-sm sm:text-base">+91 9667048566</p>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3 text-gray-300">
+                <div className="flex flex-col sm:flex-row items-center gap-3 text-gray-300 text-center sm:text-left">
                   <div className="relative">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
                       <FaMapMarkerAlt className="w-5 h-5 text-purple-400" />
@@ -280,15 +282,15 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Based in</p>
-                    <p className="font-medium">India</p>
+                    <p className="font-medium text-sm sm:text-base">India</p>
                   </div>
                 </div>
               </div>
 
               {/* Social Media */}
-              <div>
+              <div className="text-center lg:text-left w-full flex flex-col items-center lg:items-start">
                 <p className="text-gray-400 mb-4">Follow us</p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                   {[
                     { icon: <FaInstagram />, color: "from-[#E4405F] to-[#833AB4]", href: "https://www.instagram.com/rkcreactions.in?igsh=MWMzZGptYjB3M2I5Nw==" },
                     { icon: <FaTwitter />, color: "from-[#1DA1F2] to-[#1DA1F2]", href: "https://x.com/RajKumar931515?t=D41GK2stCZRxKrY4Mw2Xmg&s=09" },
