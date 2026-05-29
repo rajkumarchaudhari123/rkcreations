@@ -7,6 +7,15 @@ import Image from "next/image";
 export default function ProjectsPage() {
   const projects = [
     {
+      name: "Hostel Dudes",
+      link: "https://hostels-dudes.vercel.app/",
+      img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+      category: "Accommodation",
+      description: "Discover 12,000+ verified student PG accommodations near top colleges across India with interactive search and smart filters.",
+      tags: ["Next.js", "Tailwind CSS", "React", "Lucide React"],
+      color: "from-blue-600 to-indigo-600"
+    },
+    {
       name: "True Fit Ayurveda",
       link: "https://true-fit-ayurveda.vercel.app/",
       img: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -172,16 +181,19 @@ export default function ProjectsPage() {
     },
   ];
 
-  const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education"];
-  const [particles, setParticles] = useState<Array<{ left: string, top: string }>>([]);
+  const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education", "Accommodation"];
+  const [particles, setParticles] = useState<Array<{ left: string, top: string, xEnd: number, yEnd: number, duration: number }>>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
   useEffect(() => {
-    // Client-side only: Generate random positions for particles
-    const generatedParticles = Array.from({ length: 20 }, () => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
+    // Client-side only: Generate deterministic offsets and durations for particles
+    const generatedParticles = Array.from({ length: 12 }, (_, i) => ({
+      left: `${(i * 7 + 13) % 100}%`,
+      top: `${(i * 13 + 37) % 100}%`,
+      xEnd: ((i * 19 + 7) % 80) - 40,
+      yEnd: ((i * 31 + 13) % 80) - 40,
+      duration: 3.5 + (i % 4) * 0.8,
     }));
     setParticles(generatedParticles);
   }, []);
@@ -221,22 +233,22 @@ export default function ProjectsPage() {
 
         {/* Floating Particles */}
         <div className="absolute inset-0">
-          {particles.map((particle, i) => (
+          {particles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
               animate={{
-                y: [0, Math.random() * 100 - 50],
-                x: [0, Math.random() * 100 - 50],
+                y: [0, p.yEnd],
+                x: [0, p.xEnd],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: p.duration,
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
               style={{
-                left: particle.left,
-                top: particle.top,
+                left: p.left,
+                top: p.top,
               }}
             />
           ))}

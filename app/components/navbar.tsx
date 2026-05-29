@@ -7,67 +7,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { X, ChevronRight, Sparkles, Zap, Layers } from 'lucide-react';
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+// Standalone, self-contained Logo component to prevent unmounting and DOM recreation on Navbar updates
+const Logo = () => {
   const [isHovering, setIsHovering] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close menu when clicking outside on mobile
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.hamburger-button')) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isMenuOpen]);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpen]);
-
-  const navItems = [
-    { name: 'Home', path: '/', icon: '🏠' },
-    { name: 'Portfolio', path: '/web', icon: '📁' },
-    { name: 'About', path: '/about', icon: '👤' },
-    { name: 'Contact', path: '/contact', icon: '📞' },
-    // { name: 'AI Tools', path: '/ai-tools', icon: '🤖' },
-  ];
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // 3D Blueish Logo Component
-  const Logo = () => (
-    <Link href="/" className="relative group">
+  
+  return (
+    <Link href="/" className="relative group block">
       <motion.div
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.05, y: -2 }}
@@ -145,12 +90,14 @@ export default function Navbar() {
       </motion.div>
     </Link>
   );
+};
 
-  // 3D Blueish Button Component (Only for desktop)
-  const DesktopQuoteButton = () => (
-    <Link href="/contact">
+// Standalone Desktop Quote Button to avoid rendering recreation
+const DesktopQuoteButton = () => {
+  return (
+    <Link href="/contact" className="hidden lg:block">
       <motion.div
-        className="relative px-6 py-3 rounded-xl overflow-hidden group hidden lg:block"
+        className="relative px-6 py-3 rounded-xl overflow-hidden group"
         whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -180,10 +127,16 @@ export default function Navbar() {
       </motion.div>
     </Link>
   );
+};
 
-  // Mobile Quote Button (Only in mobile menu)
-  const MobileQuoteButton = () => (
-    <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+// Standalone Mobile Quote Button
+interface MobileQuoteButtonProps {
+  onClick: () => void;
+}
+
+const MobileQuoteButton: React.FC<MobileQuoteButtonProps> = ({ onClick }) => {
+  return (
+    <Link href="/contact" onClick={onClick} className="block w-full">
       <motion.div
         className="relative w-full py-4 rounded-xl overflow-hidden group"
         whileHover={{ scale: 1.02 }}
@@ -212,6 +165,65 @@ export default function Navbar() {
       </motion.div>
     </Link>
   );
+};
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Handle scroll state change efficiently (only sets state if the state boundary actually changes)
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 20;
+      setIsScrolled(prev => prev !== scrolled ? scrolled : prev);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close menu when clicking outside on mobile
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.hamburger-button')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
+  const navItems = [
+    { name: 'Home', path: '/', icon: '🏠' },
+    { name: 'Portfolio', path: '/web', icon: '📁' },
+    { name: 'About', path: '/about', icon: '👤' },
+    { name: 'AI Tools', path: '/ai-tools', icon: '🤖' },
+    { name: 'Contact', path: '/contact', icon: '📞' },
+  ];
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <>
@@ -220,61 +232,62 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", damping: 25 }}
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled 
             ? 'py-3 bg-gradient-to-b from-blue-900/90 via-blue-800/90 to-cyan-900/90 backdrop-blur-xl shadow-2xl border-b border-blue-400/20' 
             : 'py-4 md:py-6 bg-gradient-to-b from-blue-900/40 via-blue-800/40 to-cyan-900/40'
         }`}
       >
-        {/* Remove floating particles completely to avoid hydration errors */}
-        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo - Standardized standalone element */}
             <div className="z-50">
               <Logo />
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <Link key={item.path} href={item.path}>
-                  <motion.div
-                    className="relative group"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                      pathname === item.path 
-                        ? 'text-white' 
-                        : 'text-blue-200 hover:text-white'
-                    }`}>
-                      <span className="text-lg">{item.icon}</span>
-                      {item.name}
-                      
-                      {/* Active indicator */}
-                      {pathname === item.path && (
+              {navItems.map((item) => {
+                const isActive = pathname === item.path;
+                return (
+                  <Link key={item.path} href={item.path}>
+                    <motion.div
+                      className="relative group"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                        isActive 
+                          ? 'text-white' 
+                          : 'text-blue-200 hover:text-white'
+                      }`}>
+                        <span className="text-lg">{item.icon}</span>
+                        {item.name}
+                        
+                        {/* Active indicator */}
+                        {isActive && (
+                          <motion.div 
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
+                            layoutId="activeIndicator"
+                            initial={false}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          />
+                        )}
+                        
+                        {/* Hover effect */}
                         <motion.div 
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
-                          layoutId="activeIndicator"
-                          initial={false}
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400/50 to-cyan-400/50"
+                          initial={{ scale: 0 }}
+                          whileHover={{ scale: 1 }}
                         />
-                      )}
+                      </div>
                       
-                      {/* Hover effect */}
-                      <motion.div 
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400/50 to-cyan-400/50"
-                        initial={{ scale: 0 }}
-                        whileHover={{ scale: 1 }}
-                      />
-                    </div>
-                    
-                    {/* Hover glow */}
-                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 rounded-xl blur-md transition-all duration-300" />
-                  </motion.div>
-                </Link>
-              ))}
+                      {/* Hover glow */}
+                      <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 rounded-xl blur-md transition-all duration-300" />
+                    </motion.div>
+                  </Link>
+                );
+              })}
               
               {/* Desktop Quote Button (Only on desktop) */}
               <div className="ml-4">
@@ -282,7 +295,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Mobile Menu Button - Removed Get Quote button from mobile header */}
+            {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center">
               <motion.button
                 className="hamburger-button relative w-12 h-12 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-blue-800/40 to-cyan-800/40 border border-blue-400/30 backdrop-blur-xl"
@@ -369,43 +382,46 @@ export default function Navbar() {
 
                 {/* Menu Items */}
                 <div className="py-8 px-4 relative">
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.path}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="mb-3"
-                    >
-                      <Link
-                        href={item.path}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
-                          pathname === item.path
-                            ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/40 text-white shadow-lg shadow-blue-500/20'
-                            : 'text-blue-200 hover:text-white hover:bg-blue-500/10 border border-transparent'
-                        }`}
+                  {navItems.map((item, index) => {
+                    const isActive = pathname === item.path;
+                    return (
+                      <motion.div
+                        key={item.path}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="mb-3"
                       >
-                        {/* Background glow on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
-                        
-                        <div className="relative flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                            pathname === item.path 
-                              ? 'bg-gradient-to-br from-blue-400 to-cyan-400' 
-                              : 'bg-blue-800/50'
-                          }`}>
-                            <span className="text-lg">{item.icon}</span>
+                        <Link
+                          href={item.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={`flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+                            isActive
+                              ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/40 text-white shadow-lg shadow-blue-500/20'
+                              : 'text-blue-200 hover:text-white hover:bg-blue-500/10 border border-transparent'
+                          }`}
+                        >
+                          {/* Background glow on hover */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
+                          
+                          <div className="relative flex items-center gap-3">
+                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                              isActive 
+                                ? 'bg-gradient-to-br from-blue-400 to-cyan-400' 
+                                : 'bg-blue-800/50'
+                            }`}>
+                              <span className="text-lg">{item.icon}</span>
+                            </div>
+                            <span className="font-medium">{item.name}</span>
                           </div>
-                          <span className="font-medium">{item.name}</span>
-                        </div>
-                        
-                        <ChevronRight className={`w-5 h-5 transition-transform ${
-                          pathname === item.path ? 'text-cyan-300' : 'text-blue-400'
-                        } group-hover:translate-x-1`} />
-                      </Link>
-                    </motion.div>
-                  ))}
+                          
+                          <ChevronRight className={`w-5 h-5 transition-transform ${
+                            isActive ? 'text-cyan-300' : 'text-blue-400'
+                          } group-hover:translate-x-1`} />
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
                 </div>
 
                 {/* Mobile CTA Section */}
@@ -418,7 +434,7 @@ export default function Navbar() {
                     <p className="text-blue-200 text-sm mb-4">
                       Let&apos;s create something extraordinary together
                     </p>
-                    <MobileQuoteButton />
+                    <MobileQuoteButton onClick={() => setIsMenuOpen(false)} />
                   </div>
 
                   {/* Contact Info */}

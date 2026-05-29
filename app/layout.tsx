@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     images: ["https://rkcreations.live/og-image.jpg"], // Corrected spelling
     creator: "@rkcreations", // (optional) if you have a Twitter account
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
   metadataBase: new URL("https://rkcreations.live"), // Optional but helpful
 };
 
@@ -56,9 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* 👇 Custom Favicon Link Here */}
-        <link rel="icon" href="http://localhost:3000/_next/image?url=%2Frklogo.PNG&w=256&q=75" type="image/png" />
-        <title>My Custom App</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

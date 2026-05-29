@@ -80,31 +80,28 @@ export default function ContactPage() {
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-  // app/contact/page.tsx में इस part को बदलें:
 
       {/* Floating Particles */}
       <div className="absolute inset-0">
-        {typeof window !== 'undefined' &&
-          [...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-              animate={{
-                y: [0, Math.random() * 100 - 50],
-                x: [0, Math.random() * 100 - 50],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))
-        }
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            animate={{
+              y: [0, ((i * 29 + 17) % 100) - 50],
+              x: [0, ((i * 43 + 7) % 100) - 50],
+            }}
+            transition={{
+              duration: 3 + ((i * 13 + 5) % 20) / 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            style={{
+              left: `${(i * 37 + 13) % 100}%`,
+              top: `${(i * 53 + 21) % 100}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -121,7 +118,7 @@ export default function ContactPage() {
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
             Let&apos;s Create Something
             <span className="block text-cyan-400 mt-2">Extraordinary Together</span>
           </h1>

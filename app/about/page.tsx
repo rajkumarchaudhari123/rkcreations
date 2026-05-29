@@ -27,6 +27,18 @@ import {
   CircuitBoard
 } from "lucide-react";
 
+// Pre-computed particle positions for deterministic rendering (no hydration mismatch)
+const PARTICLES = [
+  { left: 12, top: 8, yEnd: -30, xEnd: 20, duration: 3.2 },
+  { left: 85, top: 15, yEnd: 40, xEnd: -15, duration: 4.1 },
+  { left: 42, top: 72, yEnd: -25, xEnd: 35, duration: 3.8 },
+  { left: 68, top: 45, yEnd: 30, xEnd: -40, duration: 4.5 },
+  { left: 25, top: 88, yEnd: -45, xEnd: 10, duration: 3.5 },
+  { left: 90, top: 55, yEnd: 20, xEnd: -25, duration: 4.8 },
+  { left: 55, top: 22, yEnd: -35, xEnd: -20, duration: 3.9 },
+  { left: 8, top: 60, yEnd: 45, xEnd: 30, duration: 4.3 },
+];
+
 export default function AboutPage() {
   const teamMembers = [
     {
@@ -95,31 +107,28 @@ export default function AboutPage() {
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl" />
       </div>
 
-  // app/about/page.tsx में इस part को बदलें:
 
       {/* Floating Particles */}
       <div className="absolute inset-0">
-        {typeof window !== 'undefined' &&
-          [...Array(25)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-              animate={{
-                y: [0, Math.random() * 100 - 50],
-                x: [0, Math.random() * 100 - 50],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))
-        }
+        {PARTICLES.map((p, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            animate={{
+              y: [0, p.yEnd],
+              x: [0, p.xEnd],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            style={{
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -136,7 +145,7 @@ export default function AboutPage() {
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-100 via-cyan-100 to-blue-200 bg-clip-text text-transparent">
             Building The Future
             <span className="block text-cyan-400 mt-2">Of Digital Experiences</span>
           </h1>
@@ -429,7 +438,7 @@ export default function AboutPage() {
                   Start Your Project
                 </motion.button>
               </Link>
-              <Link href="/portfolio">
+              <Link href="/web">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.95 }}

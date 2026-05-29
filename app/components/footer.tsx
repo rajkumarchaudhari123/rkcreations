@@ -7,9 +7,6 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
-  FaGithub,
-  FaDribbble,
-  FaYoutube,
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
@@ -18,13 +15,57 @@ import { motion } from "framer-motion";
 import { Sparkles, Rocket, Code, Palette } from "lucide-react";
 
 export default function Footer() {
-  const [particles, setParticles] = useState<Array<{left: string, top: string}>>([]);
+  const [particles, setParticles] = useState<Array<{left: string, top: string, animY: number, animX: number, duration: number}>>([]);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes("@")) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbw0X6vwE9pre_Am8uwonCUIhNMGKQxrgzunf9I8itd0Il84gGgVF6NpeoLPEwN9B23Umg/exec";
+
+    const formDataToSend = new URLSearchParams();
+    formDataToSend.append("name", "Newsletter Subscriber");
+    formDataToSend.append("email", email.trim());
+    formDataToSend.append("phone", "N/A");
+    formDataToSend.append("service", "Newsletter Subscription");
+    formDataToSend.append("message", "Subscribed to RK Creations newsletter from the footer.");
+
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      setIsSubscribed(true);
+      setEmail("");
+      setTimeout(() => setIsSubscribed(false), 5000);
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
-    // Client-side only: Generate random positions for particles
-    const generatedParticles = Array.from({ length: 30 }, () => ({
+    // Client-side only: Generate random positions and animation values for particles
+    const generatedParticles = Array.from({ length: 10 }, () => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
+      animY: Math.random() * 100 - 50,
+      animX: Math.random() * 100 - 50,
+      duration: 3 + Math.random() * 2,
     }));
     setParticles(generatedParticles);
   }, []);
@@ -40,11 +81,11 @@ export default function Footer() {
               key={i}
               className="absolute w-1 h-1 bg-[#ff1493]/30 rounded-full"
               animate={{
-                y: [0, Math.random() * 100 - 50],
-                x: [0, Math.random() * 100 - 50],
+                y: [0, particle.animY],
+                x: [0, particle.animX],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: particle.duration,
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
@@ -165,7 +206,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { name: "Home", href: "/" },
-                { name: "Portfolio", href: "/portfolio" },
+                { name: "Portfolio", href: "/web" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" },
               ].map((link, index) => (
@@ -253,9 +294,7 @@ export default function Footer() {
                     { icon: <FaTwitter />, color: "from-[#1DA1F2] to-[#1DA1F2]", href: "https://x.com/RajKumar931515?t=D41GK2stCZRxKrY4Mw2Xmg&s=09" },
                     { icon: <FaLinkedinIn />, color: "from-[#0077B5] to-[#0077B5]", href: "https://www.linkedin.com/in/rajkumar-chaudhari-54b9532b5" },
                     { icon: <FaFacebookF />, color: "from-[#1877F2] to-[#1877F2]", href: "https://www.facebook.com/share/16fqau56gv/" },
-                    { icon: <FaGithub />, color: "from-gray-600 to-gray-800", href: "#" },
-                    { icon: <FaDribbble />, color: "from-[#EA4C89] to-[#C32361]", href: "#" },
-                    { icon: <FaYoutube />, color: "from-[#FF0000] to-[#FF0000]", href: "#" },
+                    /* GitHub, Dribbble, and YouTube removed — no active profiles yet */
                   ].map((social, index) => (
                     <motion.a
                       key={index}
@@ -288,20 +327,45 @@ export default function Footer() {
               Stay Updated
             </h3>
             <p className="text-gray-400 mb-6">Subscribe to our newsletter for the latest updates</p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-full bg-gray-900/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#ff1493]/50 focus:ring-2 focus:ring-[#ff1493]/20 backdrop-blur-sm"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-full bg-gradient-to-r from-[#ff1493] to-pink-500 text-white font-semibold hover:shadow-lg hover:shadow-[#ff1493]/30 transition-all"
+            
+            {isSubscribed ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl text-green-300 text-sm font-semibold max-w-md mx-auto"
               >
-                Subscribe
-              </motion.button>
-            </div>
+                🎉 Thank you for subscribing! We will keep you updated.
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto items-stretch">
+                <div className="flex-1 flex flex-col items-stretch">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (errorMessage) setErrorMessage("");
+                    }}
+                    placeholder="Enter your email"
+                    className="w-full px-6 py-3 rounded-full bg-gray-900/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#ff1493]/50 focus:ring-2 focus:ring-[#ff1493]/20 backdrop-blur-sm text-sm"
+                    required
+                    disabled={isSubmitting}
+                  />
+                  {errorMessage && (
+                    <span className="text-red-400 text-xs pl-4 mt-1 text-left">{errorMessage}</span>
+                  )}
+                </div>
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-3 rounded-full bg-gradient-to-r from-[#ff1493] to-pink-500 text-white font-semibold hover:shadow-lg hover:shadow-[#ff1493]/30 transition-all text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  {isSubmitting ? "Subscribing..." : "Subscribe"}
+                </motion.button>
+              </form>
+            )}
           </div>
         </motion.div>
 
@@ -314,16 +378,17 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} RK Creations. All rights reserved.
+              &copy; 2025 RK Creations. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-gray-500">
-              <Link href="/privacy" className="hover:text-white transition-colors">
+              {/* TODO: These pages don't exist yet */}
+              <Link href="#" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white transition-colors">
+              <Link href="#" className="hover:text-white transition-colors">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="hover:text-white transition-colors">
+              <Link href="#" className="hover:text-white transition-colors">
                 Cookie Policy
               </Link>
             </div>
