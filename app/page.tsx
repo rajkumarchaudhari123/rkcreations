@@ -11,7 +11,7 @@ import Link from "next/link";
 
 // Unsplash images for slideshow - reduced quality for faster loading
 const unsplashImages = [
-  "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60",
+  "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60",
   "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60",
   "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=60"
 ];
@@ -148,6 +148,25 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
           </motion.div>
         </AnimatePresence>
+        {/* Slide Indicators - Centralized and optimized for mobile responsive interaction */}
+        <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-0 right-0 z-20 flex justify-center gap-2.5 pointer-events-auto">
+          {unsplashImages.map((_, index) => {
+            const isActive = currentImageIndex === index;
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  isActive 
+                    ? "w-7 bg-[#ff1493] shadow-[0_0_12px_rgba(255,20,147,0.6)]" 
+                    : "w-2 bg-white/30 hover:bg-white/60"
+                }`}
+                title={`Go to slide ${index + 1}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            );
+          })}
+        </div>
 
         {/* Particles - only render on client */}
         {mounted && (
