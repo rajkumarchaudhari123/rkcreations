@@ -332,135 +332,129 @@ export default function Navbar() {
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* Backdrop with blue gradient */}
+            {/* Backdrop with optimized GPU-friendly opacity transition (no expensive backdrop blur) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-gradient-to-br from-blue-900/80 via-cyan-900/80 to-blue-800/80 backdrop-blur-lg z-40 lg:hidden"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-slate-950/80 z-40 lg:hidden"
               onClick={() => setIsMenuOpen(false)}
             />
             
-            {/* Mobile Menu Panel with 3D Blue Theme */}
+            {/* Mobile Menu Panel - Responsive max-width, ease-in-out lightweight transitions */}
             <motion.div
-              className="mobile-menu fixed inset-y-0 right-0 z-40 w-full max-w-sm lg:hidden"
+              className="mobile-menu fixed inset-y-0 right-0 z-40 w-full max-w-xs sm:max-w-sm lg:hidden shadow-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: "spring", damping: 30 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
             >
-              <div className="relative h-full bg-gradient-to-b from-blue-900 via-blue-800 to-cyan-900 border-l border-blue-400/30 shadow-2xl overflow-y-auto">
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-b from-[#0b0f19] via-[#0f172a] to-[#0b0f19] border-l border-blue-500/20 overflow-y-auto scrollbar-none">
                 {/* 3D Background Effects */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
                   <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
                   <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
                 </div>
 
-                {/* Close button */}
-                <div className="absolute top-6 right-6 z-50">
-                  <motion.button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 to-cyan-700 border border-blue-400/40 flex items-center justify-center group"
-                    whileHover={{ scale: 1.1, rotate: 90 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <X className="w-5 h-5 text-white" />
-                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.button>
-                </div>
-
-                {/* Menu Header */}
-                <div className="pt-24 pb-10 px-6 border-b border-blue-400/20 relative">
-                  <div className="mb-8">
+                <div className="flex-1 flex flex-col">
+                  {/* Close button inside header wrapper */}
+                  <div className="pt-20 pb-4 px-6 border-b border-blue-400/10 flex items-center justify-between relative">
                     <Logo />
+                    
+                    <motion.button
+                      onClick={() => setIsMenuOpen(false)}
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 to-cyan-700 border border-blue-400/40 flex items-center justify-center group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <X className="w-5 h-5 text-white" />
+                    </motion.button>
                   </div>
-                  <p className="text-blue-200 text-sm flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-cyan-300" />
-                    Crafting next-gen digital experiences with cutting-edge tech
-                  </p>
-                </div>
 
-                {/* Menu Items */}
-                <div className="py-8 px-4 relative">
-                  {navItems.map((item, index) => {
-                    const isActive = pathname === item.path;
-                    return (
-                      <motion.div
-                        key={item.path}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        className="mb-3"
-                      >
+                  {/* Brand description tag */}
+                  <div className="px-6 py-4">
+                    <p className="text-blue-300/80 text-xs flex items-center gap-1.5 font-medium leading-relaxed">
+                      <Zap className="w-3.5 h-3.5 text-cyan-300 flex-shrink-0" />
+                      Crafting next-gen digital experiences with cutting-edge tech.
+                    </p>
+                  </div>
+
+                  {/* Menu Items (no laggy stagger offsets, instant GPU-ready rendering) */}
+                  <div className="py-2 px-3 space-y-1">
+                    {navItems.map((item) => {
+                      const isActive = pathname === item.path;
+                      return (
                         <Link
+                          key={item.path}
                           href={item.path}
                           onClick={() => setIsMenuOpen(false)}
-                          className={`flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+                          className={`flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 relative overflow-hidden group ${
                             isActive
-                              ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/40 text-white shadow-lg shadow-blue-500/20'
-                              : 'text-blue-200 hover:text-white hover:bg-blue-500/10 border border-transparent'
+                              ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 text-white shadow-lg shadow-blue-500/10'
+                              : 'text-blue-200 hover:text-white hover:bg-blue-500/5'
                           }`}
                         >
                           {/* Background glow on hover */}
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
                           
                           <div className="relative flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                            <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
                               isActive 
-                                ? 'bg-gradient-to-br from-blue-400 to-cyan-400' 
-                                : 'bg-blue-800/50'
+                                ? 'bg-gradient-to-br from-blue-400 to-cyan-400 text-white' 
+                                : 'bg-blue-900/30 text-blue-300 group-hover:bg-blue-800/40'
                             }`}>
-                              <span className="text-lg">{item.icon}</span>
+                              <span className="text-base">{item.icon}</span>
                             </div>
-                            <span className="font-medium">{item.name}</span>
+                            <span className="font-semibold text-sm">{item.name}</span>
                           </div>
                           
-                          <ChevronRight className={`w-5 h-5 transition-transform ${
+                          <ChevronRight className={`w-4 h-4 transition-transform ${
                             isActive ? 'text-cyan-300' : 'text-blue-400'
                           } group-hover:translate-x-1`} />
                         </Link>
-                      </motion.div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* Mobile CTA Section */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-blue-400/20 bg-gradient-to-t from-blue-900/80 to-transparent">
-                  <div className="mb-6">
-                    <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                {/* Mobile CTA & Contact Section - Placed naturally at the bottom (mt-auto) to avoid overlays on short screens */}
+                <div className="p-6 border-t border-blue-400/10 bg-blue-950/40 mt-auto space-y-5 relative">
+                  <div className="space-y-3">
+                    <h3 className="text-white font-bold text-sm flex items-center gap-2">
                       <Layers className="w-4 h-4 text-cyan-300" />
                       Ready to Build?
                     </h3>
-                    <p className="text-blue-200 text-sm mb-4">
-                      Let&apos;s create something extraordinary together
+                    <p className="text-blue-300/80 text-xs leading-relaxed">
+                      Let&apos;s create something extraordinary together.
                     </p>
                     <MobileQuoteButton onClick={() => setIsMenuOpen(false)} />
                   </div>
 
-                  {/* Contact Info */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  {/* Contact Info Grid */}
+                  <div className="grid grid-cols-2 gap-3 text-xs pt-2">
                     <a
                       href="mailto:ceorkcreations@gmail.com"
-                      className="flex items-center gap-3 p-3 rounded-xl bg-blue-800/30 border border-blue-400/20 hover:bg-blue-700/40 transition-all group"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <span className="text-cyan-300 text-lg">@</span>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <span className="text-cyan-300 text-sm">@</span>
                       </div>
-                      <div>
-                        <p className="text-blue-200">Email</p>
-                        <p className="text-cyan-300 text-xs">ceorkcreations@gmail.com</p>
+                      <div className="min-w-0">
+                        <p className="text-blue-300 text-[10px] font-bold leading-none">Email</p>
+                        <p className="text-cyan-300 text-[9px] truncate mt-1">ceorkcreations...</p>
                       </div>
                     </a>
                     <a
                       href="tel:+919667048566"
-                      className="flex items-center gap-3 p-3 rounded-xl bg-blue-800/30 border border-blue-400/20 hover:bg-blue-700/40 transition-all group"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <span className="text-blue-300 text-lg">📞</span>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <span className="text-blue-300 text-sm">📞</span>
                       </div>
-                      <div>
-                        <p className="text-blue-200">Call</p>
-                        <p className="text-cyan-300 text-xs">+91 9667048566</p>
+                      <div className="min-w-0">
+                        <p className="text-blue-300 text-[10px] font-bold leading-none">Call</p>
+                        <p className="text-cyan-300 text-[9px] truncate mt-1">+91 9667048566</p>
                       </div>
                     </a>
                   </div>
