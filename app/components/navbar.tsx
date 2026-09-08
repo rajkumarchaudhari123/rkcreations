@@ -6,28 +6,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { X, ChevronRight, Sparkles, Zap, Layers } from 'lucide-react';
+import { X, ChevronRight, Zap, Layers, Sparkles, Tag } from 'lucide-react';
 
-// Standalone, self-contained Logo component to prevent unmounting and DOM recreation on Navbar updates
+// Standalone Logo component
 const Logo = () => {
-  const [isHovering, setIsHovering] = useState(false);
-  
   return (
     <Link href="/" className="relative group block">
       <motion.div
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.08, y: -2 }}
+        whileHover={{ scale: 1.05, y: -1 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        className="relative"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
+        className="relative flex items-center gap-3"
       >
-        {/* Pink Glow behind the logo */}
-        <div className="absolute -inset-1.5 bg-gradient-to-r from-[#ff1493] to-pink-500 rounded-full blur-md opacity-50 group-hover:opacity-85 transition-opacity duration-300 animate-pulse" />
+        {/* Pink Glow behind logo */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-[#ff1493] via-pink-500 to-cyan-500 rounded-full blur-md opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
         
-        {/* Bright white circular bubble logo container to make the dark logo details perfectly visible */}
-        <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-white shadow-[0_0_15px_rgba(255,20,147,0.4)] p-1 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-[0_0_25px_rgba(255,20,147,0.75)]">
+        {/* White circular container */}
+        <div className="relative w-11 h-11 md:w-13 md:h-13 rounded-full bg-white border-2 border-white shadow-[0_0_15px_rgba(255,20,147,0.5)] p-0.5 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-[0_0_25px_rgba(255,20,147,0.8)]">
           <Image
             src="/rklogo.PNG"
             alt="RK Creations Logo"
@@ -37,80 +33,44 @@ const Logo = () => {
             priority
           />
         </div>
-      </motion.div>
-    </Link>
-  );
-};
 
-// Standalone Desktop Quote Button to avoid rendering recreation
-const DesktopQuoteButton = () => {
-  return (
-    <Link href="/contact" className="hidden lg:block">
-      <motion.div
-        className="relative px-6 py-3 rounded-xl overflow-hidden group"
-        whileHover={{ scale: 1.05, y: -3 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      >
-        {/* 3D depth layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg" />
-        <div className="absolute inset-0.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl" />
-        
-        {/* Shine effect */}
-        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-white/50 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700" />
-        
-        {/* Inner glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-xl" />
-        
-        {/* Button content */}
-        <div className="relative flex items-center justify-center gap-2">
-          <span className="font-bold text-white text-sm md:text-base">
-            Get a Quote
+        {/* Brand Name Text for Desktop */}
+        <div className="hidden sm:flex flex-col text-left">
+          <span className="font-extrabold text-base md:text-lg tracking-wider bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent group-hover:text-cyan-300 transition-colors">
+            RK CREATIONS
           </span>
-          <motion.div
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 2 }}
-          >
-            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
-          </motion.div>
+          <span className="text-[10px] text-cyan-400 font-semibold tracking-widest uppercase -mt-1">
+            Digital Agency
+          </span>
         </div>
       </motion.div>
     </Link>
   );
 };
 
-// Standalone Mobile Quote Button
-interface MobileQuoteButtonProps {
-  onClick: () => void;
-}
-
-const MobileQuoteButton: React.FC<MobileQuoteButtonProps> = ({ onClick }) => {
+// Standalone Desktop Quote Button
+const DesktopQuoteButton = () => {
   return (
-    <Link href="/contact" onClick={onClick} className="block w-full">
+    <Link href="/contact" className="hidden lg:block">
       <motion.div
-        className="relative w-full py-4 rounded-xl overflow-hidden group"
-        whileHover={{ scale: 1.02 }}
+        className="relative px-5 py-2.5 rounded-xl overflow-hidden group cursor-pointer"
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {/* 3D depth layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg" />
-        <div className="absolute inset-0.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl" />
+        {/* Glowing border background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#ff1493] via-pink-500 to-cyan-500 rounded-xl shadow-lg shadow-[#ff1493]/20" />
+        <div className="absolute inset-[1.5px] bg-slate-950 rounded-[10px] group-hover:bg-opacity-80 transition-all duration-300" />
         
-        {/* Inner glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-xl" />
+        {/* Shimmer sweep */}
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700 pointer-events-none" />
         
         {/* Button content */}
-        <div className="relative flex items-center justify-center gap-2">
-          <span className="font-bold text-white text-base">
+        <div className="relative flex items-center justify-center gap-2 z-10">
+          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-pink-200 to-cyan-200 text-sm">
             Get a Quote
           </span>
-          <motion.div
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 2 }}
-          >
-            <ChevronRight className="w-5 h-5 text-white" />
-          </motion.div>
+          <ChevronRight className="w-4 h-4 text-cyan-300 group-hover:translate-x-1 transition-transform" />
         </div>
       </motion.div>
     </Link>
@@ -120,14 +80,9 @@ const MobileQuoteButton: React.FC<MobileQuoteButtonProps> = ({ onClick }) => {
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Handle scroll state change efficiently (only sets state if the state boundary actually changes)
+  // Handle scroll state change efficiently
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 20;
@@ -138,20 +93,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu when clicking outside on mobile
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.hamburger-button')) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isMenuOpen]);
-
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -166,6 +108,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', path: '/', icon: '🏠' },
     { name: 'Portfolio', path: '/portfolio', icon: '📁' },
+    { name: 'Pricing', path: '/pricing', icon: '🏷️' },
     { name: 'About', path: '/about', icon: '👤' },
     { name: 'AI Tools', path: '/ai-tools', icon: '🤖' },
     { name: 'Contact', path: '/contact', icon: '📞' },
@@ -177,100 +120,82 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Main Navbar with 3D Blue Background */}
+      {/* Main Navbar Header */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ type: "spring", damping: 25 }}
+        transition={{ type: "spring", damping: 25, stiffness: 200 }}
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled 
-            ? 'py-3 bg-gradient-to-b from-blue-900/90 via-blue-800/90 to-cyan-900/90 backdrop-blur-xl shadow-2xl border-b border-blue-400/20' 
-            : 'py-4 md:py-6 bg-gradient-to-b from-blue-900/40 via-blue-800/40 to-cyan-900/40'
+            ? 'py-2.5 bg-slate-950/85 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] border-b border-cyan-500/20' 
+            : 'py-4 md:py-5 bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-transparent'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Logo - Standardized standalone element */}
+            {/* Brand Logo */}
             <div className="z-50">
               <Logo />
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 bg-slate-900/60 border border-white/10 backdrop-blur-xl px-4 py-1.5 rounded-full shadow-inner">
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
                 return (
                   <Link key={item.path} href={item.path}>
                     <motion.div
-                      className="relative group"
-                      whileHover={{ y: -3 }}
+                      className="relative px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
+                      whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <div className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                        isActive 
-                          ? 'text-white' 
-                          : 'text-blue-200 hover:text-white'
-                      }`}>
-                        <span className="text-lg">{item.icon}</span>
+                      <span className="text-sm">{item.icon}</span>
+                      <span className={isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}>
                         {item.name}
-                        
-                        {/* Active indicator */}
-                        {isActive && (
-                          <motion.div 
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
-                            layoutId="activeIndicator"
-                            initial={false}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                          />
-                        )}
-                        
-                        {/* Hover effect */}
-                        <motion.div 
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-400/50 to-cyan-400/50"
-                          initial={{ scale: 0 }}
-                          whileHover={{ scale: 1 }}
-                        />
-                      </div>
+                      </span>
                       
-                      {/* Hover glow */}
-                      <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 rounded-xl blur-md transition-all duration-300" />
+                      {/* Active indicator pill */}
+                      {isActive && (
+                        <motion.div 
+                          className="absolute inset-0 rounded-full bg-gradient-to-r from-[#ff1493]/30 to-cyan-500/30 border border-[#ff1493]/50 shadow-[0_0_12px_rgba(255,20,147,0.3)] -z-10"
+                          layoutId="navActivePill"
+                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                        />
+                      )}
                     </motion.div>
                   </Link>
                 );
               })}
-              
-              {/* Desktop Quote Button (Only on desktop) */}
-              <div className="ml-4">
-                <DesktopQuoteButton />
-              </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden flex items-center">
+            {/* Desktop CTA Button */}
+            <div className="hidden lg:flex items-center">
+              <DesktopQuoteButton />
+            </div>
+
+            {/* Mobile Hamburger Button */}
+            <div className="lg:hidden flex items-center z-50">
               <motion.button
-                className="hamburger-button relative w-12 h-12 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-blue-800/40 to-cyan-800/40 border border-blue-400/30 backdrop-blur-xl"
+                className="hamburger-button relative w-11 h-11 flex flex-col items-center justify-center rounded-xl bg-slate-900/80 border border-cyan-400/30 backdrop-blur-xl shadow-md cursor-pointer"
                 onClick={toggleMenu}
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05, rotate: 90 }}
-                aria-label="Toggle menu"
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                aria-label="Toggle navigation menu"
               >
-                {/* 3D effect */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-lg rounded-2xl" />
-                
                 <motion.span 
-                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full mb-1.5"
-                  animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                />
-                <motion.span 
-                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full mb-1.5"
-                  animate={isMenuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: 24 }}
+                  className="relative block w-5 h-0.5 bg-gradient-to-r from-[#ff1493] to-cyan-300 rounded-full mb-1"
+                  animate={isMenuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
                   transition={{ duration: 0.2 }}
                 />
                 <motion.span 
-                  className="relative block w-6 h-0.5 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full"
-                  animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative block w-5 h-0.5 bg-gradient-to-r from-pink-300 to-cyan-300 rounded-full mb-1"
+                  animate={isMenuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: 20 }}
+                  transition={{ duration: 0.15 }}
+                />
+                <motion.span 
+                  className="relative block w-5 h-0.5 bg-gradient-to-r from-cyan-300 to-blue-400 rounded-full"
+                  animate={isMenuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.2 }}
                 />
               </motion.button>
             </div>
@@ -278,21 +203,21 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* Backdrop with optimized GPU-friendly opacity transition (no expensive backdrop blur) */}
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-slate-950/80 z-40 lg:hidden"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg:hidden"
               onClick={() => setIsMenuOpen(false)}
             />
             
-            {/* Mobile Menu Panel - Responsive max-width, ease-in-out lightweight transitions */}
+            {/* Mobile Drawer Panel */}
             <motion.div
               className="mobile-menu fixed inset-y-0 right-0 z-40 w-full max-w-xs sm:max-w-sm lg:hidden shadow-2xl"
               initial={{ x: '100%' }}
@@ -300,38 +225,24 @@ export default function Navbar() {
               exit={{ x: '100%' }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
             >
-              <div className="relative h-full flex flex-col justify-between bg-gradient-to-b from-[#0b0f19] via-[#0f172a] to-[#0b0f19] border-l border-blue-500/20 overflow-y-auto scrollbar-none">
-                {/* 3D Background Effects */}
+              <div className="relative h-full flex flex-col justify-between bg-slate-950 border-l border-cyan-500/30 overflow-y-auto pt-20 px-4 pb-6">
+                {/* Background ambient glow */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
-                  <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff1493]/10 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
                 </div>
 
-                <div className="flex-1 flex flex-col">
-                  {/* Close button inside header wrapper */}
-                  <div className="pt-20 pb-4 px-6 border-b border-blue-400/10 flex items-center justify-between relative">
-                    <Logo />
-                    
-                    <motion.button
-                      onClick={() => setIsMenuOpen(false)}
-                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 to-cyan-700 border border-blue-400/40 flex items-center justify-center group"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <X className="w-5 h-5 text-white" />
-                    </motion.button>
-                  </div>
-
-                  {/* Brand description tag */}
-                  <div className="px-6 py-4">
-                    <p className="text-blue-300/80 text-xs flex items-center gap-1.5 font-medium leading-relaxed">
-                      <Zap className="w-3.5 h-3.5 text-cyan-300 flex-shrink-0" />
-                      Crafting next-gen digital experiences with cutting-edge tech.
+                <div className="relative z-10 space-y-6">
+                  {/* Brand Tagline */}
+                  <div className="px-2 py-3 bg-slate-900/60 rounded-xl border border-white/10">
+                    <p className="text-cyan-300 text-xs flex items-center gap-2 font-medium">
+                      <Zap className="w-4 h-4 text-[#ff1493] flex-shrink-0" />
+                      Crafting next-gen web solutions & AI platforms
                     </p>
                   </div>
 
-                  {/* Menu Items (no laggy stagger offsets, instant GPU-ready rendering) */}
-                  <div className="py-2 px-3 space-y-1">
+                  {/* Navigation Links */}
+                  <div className="space-y-1.5">
                     {navItems.map((item) => {
                       const isActive = pathname === item.path;
                       return (
@@ -339,74 +250,38 @@ export default function Navbar() {
                           key={item.path}
                           href={item.path}
                           onClick={() => setIsMenuOpen(false)}
-                          className={`flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 relative overflow-hidden group ${
+                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${
                             isActive
-                              ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 text-white shadow-lg shadow-blue-500/10'
-                              : 'text-blue-200 hover:text-white hover:bg-blue-500/5'
+                              ? 'bg-gradient-to-r from-[#ff1493]/20 via-pink-500/10 to-cyan-500/20 border border-[#ff1493]/40 text-white shadow-lg'
+                              : 'text-gray-300 hover:text-white hover:bg-slate-900/50'
                           }`}
                         >
-                          {/* Background glow on hover */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-blue-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
-                          
-                          <div className="relative flex items-center gap-3">
-                            <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
-                              isActive 
-                                ? 'bg-gradient-to-br from-blue-400 to-cyan-400 text-white' 
-                                : 'bg-blue-900/30 text-blue-300 group-hover:bg-blue-800/40'
-                            }`}>
-                              <span className="text-base">{item.icon}</span>
-                            </div>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xl">{item.icon}</span>
                             <span className="font-semibold text-sm">{item.name}</span>
                           </div>
                           
-                          <ChevronRight className={`w-4 h-4 transition-transform ${
-                            isActive ? 'text-cyan-300' : 'text-blue-400'
-                          } group-hover:translate-x-1`} />
+                          <ChevronRight className={`w-4 h-4 ${isActive ? 'text-cyan-300' : 'text-gray-500'}`} />
                         </Link>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Mobile CTA & Contact Section - Placed naturally at the bottom (mt-auto) to avoid overlays on short screens */}
-                <div className="p-6 border-t border-blue-400/10 bg-blue-950/40 mt-auto space-y-5 relative">
-                  <div className="space-y-3">
-                    <h3 className="text-white font-bold text-sm flex items-center gap-2">
-                      <Layers className="w-4 h-4 text-cyan-300" />
-                      Ready to Build?
-                    </h3>
-                    <p className="text-blue-300/80 text-xs leading-relaxed">
-                      Let&apos;s create something extraordinary together.
-                    </p>
-                    <MobileQuoteButton onClick={() => setIsMenuOpen(false)} />
-                  </div>
+                {/* Mobile CTA Footer */}
+                <div className="relative z-10 pt-6 border-t border-white/10 space-y-4">
+                  <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                    <motion.button
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#ff1493] via-pink-600 to-cyan-600 text-white font-bold text-sm shadow-lg shadow-[#ff1493]/30 flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Get a Free Quote</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </motion.button>
+                  </Link>
 
-                  {/* Contact Info Grid */}
-                  <div className="grid grid-cols-2 gap-3 text-xs pt-2">
-                    <a
-                      href="mailto:ceorkcreations@gmail.com"
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <span className="text-cyan-300 text-sm">@</span>
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-blue-300 text-[10px] font-bold leading-none">Email</p>
-                        <p className="text-cyan-300 text-[9px] truncate mt-1">ceorkcreations...</p>
-                      </div>
-                    </a>
-                    <a
-                      href="tel:+919667048566"
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/10 hover:bg-blue-900/30 transition-all group"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <span className="text-blue-300 text-sm">📞</span>
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-blue-300 text-[10px] font-bold leading-none">Call</p>
-                        <p className="text-cyan-300 text-[9px] truncate mt-1">+91 9667048566</p>
-                      </div>
-                    </a>
+                  <div className="text-center pt-2">
+                    <p className="text-[11px] text-gray-400">Call / WhatsApp: <span className="text-cyan-300 font-bold">+91 9667048566</span></p>
                   </div>
                 </div>
               </div>
@@ -415,8 +290,8 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Add padding to main content */}
-      <div className="h-20 md:h-24" />
+      {/* Spacer div to push content below fixed header */}
+      <div className="h-16 md:h-20" />
     </>
   );
 }

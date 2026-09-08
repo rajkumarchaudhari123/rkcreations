@@ -8,6 +8,7 @@ import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaChartLine } from "react-
 import { SiNextdotjs, SiExpo, SiMysql, SiPytorch, SiTensorflow, SiPandas, SiNumpy, SiHuggingface, SiPython } from "react-icons/si";
 import Image from "next/image";
 import Link from "next/link";
+import PricingSection from "./components/pricing";
 
 // Unsplash images for slideshow - reduced quality for faster loading
 const unsplashImages = [
@@ -418,6 +419,9 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      {/* Pricing Section */}
+      <PricingSection />
 
       {/* ======================== SECTION 04: TOOLS ======================== */}
       <section className="min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden py-12 md:py-24">

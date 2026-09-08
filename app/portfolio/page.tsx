@@ -7,6 +7,15 @@ import Image from "next/image";
 export default function ProjectsPage() {
   const projects = [
     {
+      name: "Elite Workforce Australia",
+      link: "https://www.eliteworkforceaustralia.com.au/",
+      img: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1170&auto=format&fit=crop",
+      category: "Staffing",
+      description: "Premier Australian workforce and staffing platform connecting businesses with top qualified talent across healthcare, construction, and hospitality.",
+      tags: ["Next.js", "React", "Tailwind CSS", "Staffing Platform"],
+      color: "from-cyan-500 to-blue-600"
+    },
+    {
       name: "Hostel Dudes",
       link: "https://hostels-dudes.vercel.app/",
       img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -64,27 +73,27 @@ export default function ProjectsPage() {
       name: "Smart Traffic AI",
       link: "https://traffic-ai-production-c296.up.railway.app/",
       img: "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: " AI",
-      description: "AI-powered taffic management and optimization system for smart cities",
-      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "FastApi"],
+      category: "AI/ML",
+      description: "AI-powered traffic management and optimization system for smart cities",
+      tags: ["PyTorch", "TensorFlow","Machine Learning", "AI/ML", "FastAPI"],
       color: "from-indigo-500 to-blue-500"
     },
     {
       name: "HandWritten Text Recognition",
       link: "https://res.cloudinary.com/dpfdj5xc0/image/upload/v1779445563/Screenshot_20260522-155354_LinkedIn_2_iza8sf.jpg",
       img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: " AI",
+      category: "AI/ML",
       description: "Handwritten text recognition system using deep learning techniques for accurate transcription of handwritten documents",
-      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
+      tags: ["PyTorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
       color: "from-indigo-500 to-blue-500"
     },
     {
-      name: "Smart Fintect AI",
+      name: "Smart Fintech AI",
       link: "https://smart-fintech-ai.onrender.com/",
       img: "https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: " AI",
+      category: "AI/ML",
       description: "Smart fintech AI platform for automated financial analysis and decision-making",
-      tags: ["Pytorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
+      tags: ["PyTorch", "TensorFlow","Machine Learning", "AI/ML", "Firebase"],
       color: "from-indigo-500 to-blue-500"
     },
     {
@@ -100,7 +109,7 @@ export default function ProjectsPage() {
       name: "Jarvish AI Assistant",
       link: "https://neuro-twin-gold.vercel.app/",
       img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-      category: "AI",
+      category: "AI/ML",
       description: "Intelligent AI assistant with natural language processing",
       tags: ["Next.js", "OpenAI", "Tailwind"],
       color: "from-cyan-500 to-blue-500"
@@ -109,7 +118,7 @@ export default function ProjectsPage() {
       name: "Grocery Mahadev",
       link: "https://grocery-mahadev-shop.vercel.app/",
       img: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-      category: "Grocery E-commerce",
+      category: "E-commerce",
       description: "Full-featured online grocery shopping platform",
       tags: ["React", "Redux", "Node.js"],
       color: "from-lime-500 to-green-500"
@@ -127,25 +136,25 @@ export default function ProjectsPage() {
       name: "Intech Pest Control",
       link: "https://intech-pest-control.vercel.app/",
       img: "https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Healthcare",
-      description: "Healthcare management system for clinics and hospitals",
-      tags: ["Next.js", "TypeScript", "GraphQL"],
+      category: "Services",
+      description: "On-demand pest control booking and service management platform",
+      tags: ["Next.js", "TypeScript", "Tailwind"],
       color: "from-teal-500 to-blue-500",
     },
     {
       name: "Watcon International",
       link: "https://watcon-international.vercel.app/",
       img: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Watson International",
-      description: "Healthcare management system for clinics and hospitals",
-      tags: ["Next.js", "TypeScript", "GraphQL"],
+      category: "Corporate",
+      description: "International corporate business portfolio website",
+      tags: ["Next.js", "TypeScript", "Tailwind"],
       color: "from-teal-500 to-blue-500",
     },
     {
       name: "EduLearn Platform",
       link: "https://booksforall.in/",
       img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-      category: "EdTech",
+      category: "Education",
       description: "Interactive online learning platform with video courses",
       tags: ["React", "Video.js", "MongoDB"],
       color: "from-violet-500 to-purple-500",
@@ -173,14 +182,14 @@ export default function ProjectsPage() {
       name: "Squeako APP-Development",
       link: "https://play.google.com/store/apps/details?id=com.squeako.mobileappchat",
       img: "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=1201&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "EdTech",
-      description: "Interactive online learning platform with video courses",
-      tags: ["React", "Video.js", "MongoDB"],
+      category: "Mobile App",
+      description: "Interactive chat and social mobile application for Android",
+      tags: ["React Native", "Mobile App", "Firebase"],
       color: "from-violet-500 to-purple-500",
     },
   ];
 
-  const categories = ["All", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education", "Accommodation"];
+  const categories = ["All", "Staffing", "E-commerce", "Healthcare", "AI/ML", "Travel", "FinTech", "Education", "Accommodation"];
   const [particles, setParticles] = useState<Array<{ left: string, top: string, xEnd: number, yEnd: number, duration: number }>>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -286,13 +295,13 @@ export default function ProjectsPage() {
           transition={{ delay: 0.2 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <motion.button
               key={category}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === category
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${activeFilter === category
                   ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30'
                   : 'bg-blue-900/40 border border-blue-400/30 text-blue-200 hover:bg-blue-800/40 hover:border-blue-300/40'
                 }`}
@@ -309,104 +318,107 @@ export default function ProjectsPage() {
               key={index}
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.08 }}
               whileHover={{ y: -10 }}
               className="relative group"
             >
               {/* 3D Card Effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
 
-              <div className="relative bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border border-blue-400/30 rounded-2xl overflow-hidden backdrop-blur-xl h-full">
-                {/* Image Container */}
-                <div className="relative h-48 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={project.img}
-                      alt={project.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+              <div className="relative bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border border-blue-400/30 rounded-2xl overflow-hidden backdrop-blur-xl h-full flex flex-col justify-between">
+                <div>
+                  {/* Image Container */}
+                  <div className="relative h-48 overflow-hidden">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={project.img}
+                        alt={project.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${project.color} text-white shadow-md`}>
+                        {project.category}
+                      </span>
+                    </div>
+
+                    {/* Live Indicator */}
+                    <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                      {project.status === "demo" ? (
+                        <>
+                          <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                          <span className="text-xs text-yellow-300 font-medium">Demo</span>
+                        </>
+                      ) : (
+                        <>
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                          <span className="text-xs text-green-300 font-medium">Live</span>
+                        </>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${project.color} text-white`}>
-                      {project.category}
-                    </span>
-                  </div>
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+                        <p className="text-blue-200/80 text-sm mb-4">{project.description}</p>
+                      </div>
+                      <motion.button
+                        whileHover={{ rotate: 90, scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => handleExternalLinkClick(project.link, e)}
+                        className="flex-shrink-0 p-1 hover:bg-blue-800/30 rounded-lg transition-colors cursor-pointer"
+                        title="Open in new tab"
+                      >
+                        <ExternalLink className="w-5 h-5 text-cyan-400" />
+                      </motion.button>
+                    </div>
 
-                  {/* Live Indicator */}
-                  <div className="absolute top-4 right-4 flex items-center gap-1">
-                    {project.status === "demo" ? (
-                      <>
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
-                        <span className="text-xs text-yellow-300 font-medium">Demo</span>
-                      </>
-                    ) : (
-                      <>
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                        <span className="text-xs text-green-300 font-medium">Live</span>
-                      </>
-                    )}
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 bg-blue-800/40 border border-blue-400/30 rounded-full text-blue-200 text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-                      <p className="text-blue-200/80 text-sm mb-4">{project.description}</p>
-                    </div>
-                    <motion.button
-                      whileHover={{ rotate: 90, scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={(e) => handleExternalLinkClick(project.link, e)}
-                      className="flex-shrink-0 p-1 hover:bg-blue-800/30 rounded-lg transition-colors"
-                      title="Open in new tab"
-                    >
-                      <ExternalLink className="w-5 h-5 text-cyan-400" />
-                    </motion.button>
-                  </div>
+                {/* Action Buttons */}
+                <div className="p-6 pt-0 flex gap-3">
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleVisitProject(project.link)}
+                    className={`flex-1 py-2.5 relative z-20 rounded-xl bg-gradient-to-r ${project.color} text-white font-semibold text-center flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-cyan-500/20 cursor-pointer text-sm`}
+                  >
+                    <Eye className="w-4 h-4" />
+                    {project.status === "demo" ? "View Demo" : "Visit Project"}
+                  </motion.button>
 
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-3 py-1 bg-blue-800/40 border border-blue-400/30 rounded-full text-blue-200 text-xs"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleVisitProject(project.link)}
-                      className={`flex-1 py-2.5 relative z-20 rounded-xl bg-gradient-to-r ${project.color} text-white font-semibold text-center flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-current/30 cursor-pointer`}
-                    >
-                      <Eye className="w-4 h-4" />
-                      {project.status === "demo" ? "View Demo" : "Visit Project"}
-                    </motion.button>
-
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-4 py-2.5 rounded-xl bg-blue-800/40 border border-blue-400/30 text-blue-200 hover:bg-blue-700/40 hover:text-white transition-all"
-                    >
-                      <Github className="w-5 h-5" />
-                    </motion.button>
-                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleVisitProject(project.link)}
+                    className="px-4 py-2.5 rounded-xl bg-blue-800/40 border border-blue-400/30 text-blue-200 hover:bg-blue-700/40 hover:text-white transition-all cursor-pointer"
+                  >
+                    <Github className="w-5 h-5" />
+                  </motion.button>
                 </div>
 
                 {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/0 via-transparent to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/0 via-transparent to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" />
               </div>
             </motion.div>
           ))}
@@ -420,11 +432,11 @@ export default function ProjectsPage() {
             className="text-center py-12"
           >
             <p className="text-xl text-blue-200/80">
-              No projects found for "{activeFilter}" category.
+              No projects found for &quot;{activeFilter}&quot; category.
             </p>
             <button
               onClick={() => setActiveFilter("All")}
-              className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
+              className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all cursor-pointer"
             >
               Show All Projects
             </button>
@@ -435,7 +447,7 @@ export default function ProjectsPage() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.6 }}
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
@@ -463,7 +475,7 @@ export default function ProjectsPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 0.8 }}
           className="mt-20 text-center"
         >
           <div className="relative">
