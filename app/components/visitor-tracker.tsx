@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 
 export default function VisitorTracker() {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-KDH7NGGRJ6";
 
   useEffect(() => {
     // Send Telegram alert once per session
