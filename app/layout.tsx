@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import VisitorTracker from "./components/visitor-tracker";
 
 export const metadata: Metadata = {
   title: "RK Creations | Web & App Development | Digital Marketing & SEO",
@@ -50,6 +51,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className="font-sans antialiased bg-slate-950 text-white">
+        <VisitorTracker />
         <Navbar />
         <div className="min-h-screen w-full bg-gradient-to-br from-[#0b0f19] via-[#0f172a] to-[#0b0f19] transition-all duration-500">
           {children}
