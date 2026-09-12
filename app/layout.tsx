@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import VisitorTracker from "./components/visitor-tracker";
+import WhatsAppWidget from "./components/whatsapp-widget";
+import LeadPopup from "./components/lead-popup";
 
 export const metadata: Metadata = {
   title: "RK Creations | Web & App Development | Digital Marketing & SEO",
@@ -56,6 +58,8 @@ export default function RootLayout({
         <div className="min-h-screen w-full bg-gradient-to-br from-[#0b0f19] via-[#0f172a] to-[#0b0f19] transition-all duration-500">
           {children}
         </div>
+        <WhatsAppWidget />
+        <LeadPopup />
         <Footer />
       </body>
     </html>

@@ -5,17 +5,15 @@ export async function POST(req: Request) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    // Read payload or fallback to request headers
+    // Read payload
     const body = await req.json().catch(() => ({}));
-    const pageUrl = body.url || "Home Page";
+    const isLead = body.type === "lead";
 
-    // Extract IP from request headers
+    // Extract IP
     const forwarded = req.headers.get("x-forwarded-for");
     const ip = forwarded ? forwarded.split(",")[0].trim() : req.headers.get("x-real-ip") || "Unknown IP";
-
     const userAgent = req.headers.get("user-agent") || "Unknown Device";
 
-    // Detect device type simple parser
     let deviceType = "💻 Desktop / PC";
     if (/mobile/i.test(userAgent)) {
       deviceType = "📱 Mobile (Android/iPhone)";
@@ -23,7 +21,6 @@ export async function POST(req: Request) {
       deviceType = "📱 Tablet / iPad";
     }
 
-    // Geolocation lookup via ip-api
     let locationStr = "Location Unknown";
     if (ip && ip !== "Unknown IP" && !ip.startsWith("127.") && !ip.startsWith("192.") && ip !== "::1") {
       try {
@@ -45,13 +42,28 @@ export async function POST(req: Request) {
       timeStyle: "short",
     });
 
-    const alertMessage = 
-      `🚨 *NEW WEBSITE VISITOR ALERT!*\n\n` +
-      `🌐 *Page:* ${pageUrl}\n` +
-      `📍 *Location:* ${locationStr}\n` +
-      `💻 *Device:* ${deviceType}\n` +
-      `⏰ *Time:* ${currentTime}\n` +
-      `🔗 *IP:* \`${ip}\``;
+    let alertMessage = "";
+
+    if (isLead) {
+      alertMessage =
+        `🔥 *NEW HOT LEAD RECEIVED!* 🔥\n\n` +
+        `👤 *Name:* ${body.name || "N/A"}\n` +
+        `📞 *Phone/WhatsApp:* \`${body.phone || "N/A"}\`\n` +
+        `💼 *Service:* ${body.service || "General Inquiry"}\n` +
+        `💬 *Message:* ${body.message || "Requested Callback"}\n\n` +
+        `📍 *Location:* ${locationStr}\n` +
+        `💻 *Device:* ${deviceType}\n` +
+        `⏰ *Time:* ${currentTime}`;
+    } else {
+      const pageUrl = body.url || "Home Page";
+      alertMessage =
+        `🚨 *NEW WEBSITE VISITOR ALERT!*\n\n` +
+        `🌐 *Page:* ${pageUrl}\n` +
+        `📍 *Location:* ${locationStr}\n` +
+        `💻 *Device:* ${deviceType}\n` +
+        `⏰ *Time:* ${currentTime}\n` +
+        `🔗 *IP:* \`${ip}\``;
+    }
 
     // Send to Telegram if credentials are set
     if (botToken && chatId) {
@@ -66,9 +78,9 @@ export async function POST(req: Request) {
       });
     }
 
-    return NextResponse.json({ success: true, message: "Visitor tracked" });
+    return NextResponse.json({ success: true, message: isLead ? "Lead submitted" : "Visitor tracked" });
   } catch (error) {
-    console.error("Visitor alert tracking error:", error);
+    console.error("Visitor/Lead alert tracking error:", error);
     return NextResponse.json({ success: false, error: "Tracking failed" }, { status: 500 });
   }
 }
