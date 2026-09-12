@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Zap, Sparkles, Star, ShieldCheck, Calculator } from "lucide-react";
+import { Check, Zap, Sparkles, Star, ShieldCheck, Calculator, AlertCircle, Wrench, Clock, Server } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function PricingSection() {
@@ -34,9 +34,9 @@ export default function PricingSection() {
     {
       id: "business",
       name: "Business Website",
-      price: "₹20,000",
-      originalPrice: "₹25,000",
-      discount: "20% OFF",
+      price: "₹25,000",
+      originalPrice: "₹30,000",
+      discount: "17% OFF",
       popular: true,
       tagline: "Best for growing startups, agencies & professional companies",
       gradient: "from-[#ff1493] via-pink-600 to-purple-600",
@@ -44,14 +44,15 @@ export default function PricingSection() {
       features: [
         "Up to 10 Dynamic High-Converting Pages",
         "Modern Custom UI/UX & Sleek Animations",
+        "Mobile Responsive Design",
+        "WhatsApp & Social Media Integration",
+        "Speed & Performance Optimization",
         "Dynamic Blog / Portfolio Showcase",
         "Advanced On-Page & Technical SEO",
         "Lead Capture Forms with Email Alerts",
-        "Google Analytics & Search Console Setup",
-        "Admin Dashboard / CMS Management",
         "3 Months Free Maintenance & Support",
       ],
-      whatsappMsg: "Hi RK Creations! I am interested in the Business Website plan (₹20,000). Let's connect!"
+      whatsappMsg: "Hi RK Creations! I am interested in the Business Website plan (₹25,000). Let's connect!"
     },
     {
       id: "premium",
@@ -74,6 +75,54 @@ export default function PricingSection() {
         "6 Months Free Maintenance & Backups",
       ],
       whatsappMsg: "Hi RK Creations! I am interested in the Premium / E-Commerce plan (₹30,000). Please contact me."
+    }
+  ];
+
+  const maintenancePackages = [
+    {
+      planFor: "Basic Plan (₹15,000 Website)",
+      price: "₹2,000",
+      period: "/ month",
+      freeSupport: "Starts after 1 Month Free Support",
+      gradient: "from-blue-500 to-indigo-500",
+      features: [
+        "Regular Website & Security Backups",
+        "Security & Plugin Updates",
+        "Basic Bug Fixes & Troubleshooting",
+        "Up to 2 Minor Content Updates / month",
+        "Standard Email & WhatsApp Support",
+      ]
+    },
+    {
+      planFor: "Business Plan (₹25,000 Website)",
+      price: "₹3,000",
+      period: "/ month",
+      freeSupport: "Starts after 3 Months Free Support",
+      popular: true,
+      gradient: "from-[#ff1493] to-pink-500",
+      features: [
+        "Weekly Full Site & Data Backups",
+        "Bi-weekly Speed & Performance Check",
+        "Priority Bug Fixes & Issue Resolution",
+        "Up to 5 Content / Product Updates / month",
+        "Uptime Monitoring & SSL Renewal Support",
+        "Priority Phone & WhatsApp Support",
+      ]
+    },
+    {
+      planFor: "Premium Plan (₹30,000 Website)",
+      price: "₹5,000",
+      period: "/ month",
+      freeSupport: "Starts after 6 Months Free Support",
+      gradient: "from-cyan-500 to-blue-600",
+      features: [
+        "Daily Automated Cloud Backups",
+        "24/7 Priority Emergency Developer Support",
+        "Database & Server Health Optimization",
+        "Unlimited Minor Content & Feature Tweaks",
+        "Monthly SEO & Performance Analytics Report",
+        "Dedicated Account Manager",
+      ]
     }
   ];
 
@@ -110,7 +159,7 @@ export default function PricingSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -137,10 +186,16 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-300 text-base sm:text-xl max-w-3xl mx-auto"
+            className="text-gray-300 text-base sm:text-xl max-w-3xl mx-auto mb-6"
           >
             High-quality custom websites starting from <span className="text-white font-bold underline decoration-[#ff1493]">₹15,000 to ₹30,000</span>. No hidden costs. 100% Satisfaction guaranteed.
           </motion.p>
+
+          {/* Deployment Disclaimer Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-medium max-w-xl mx-auto">
+            <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+            <span><strong>Note:</strong> Website Deployment & Domain/Hosting charges are not included in base development package.</span>
+          </div>
         </div>
 
         {/* Pricing Cards Grid */}
@@ -190,9 +245,15 @@ export default function PricingSection() {
                       {plan.originalPrice}
                     </span>
                   </div>
-                  <span className="text-xs text-cyan-400 font-medium mt-1 block">
-                    One-time payment • No monthly fees
-                  </span>
+                  <div className="flex flex-col gap-1 mt-2">
+                    <span className="text-xs text-cyan-400 font-medium">
+                      One-time development • No monthly fees
+                    </span>
+                    <span className="text-[11px] text-amber-300/90 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3 text-amber-400" />
+                      Deployment not included
+                    </span>
+                  </div>
                 </div>
 
                 {/* Features List */}
@@ -233,6 +294,80 @@ export default function PricingSection() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Maintenance Charges Section (Post Free Support Expiry) */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 mb-3 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+              <Wrench className="w-4 h-4 text-cyan-400" />
+              POST-FREE SUPPORT MAINTENANCE
+            </div>
+            <h3 className="text-2xl sm:text-4xl font-extrabold text-white mb-3">
+              Monthly Maintenance & Support Packages
+            </h3>
+            <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+              Once your free included maintenance period expires, choose an affordable ongoing monthly support plan to keep your website fast, secure & bug-free.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {maintenancePackages.map((mPackage, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -6 }}
+                className={`rounded-2xl p-6 bg-slate-900/60 border backdrop-blur-xl flex flex-col justify-between ${
+                  mPackage.popular ? "border-[#ff1493]/50 shadow-lg shadow-[#ff1493]/10" : "border-white/10"
+                }`}
+              >
+                <div>
+                  <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
+                    {mPackage.planFor}
+                  </div>
+
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className={`text-3xl font-black bg-gradient-to-r ${mPackage.gradient} bg-clip-text text-transparent`}>
+                      {mPackage.price}
+                    </span>
+                    <span className="text-gray-400 text-sm font-semibold">{mPackage.period}</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-xs text-pink-300 bg-pink-500/10 px-3 py-1 rounded-lg border border-pink-500/20 mb-6 inline-block">
+                    <Clock className="w-3.5 h-3.5 inline mr-1" />
+                    {mPackage.freeSupport}
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    <p className="text-xs font-bold text-gray-300 uppercase tracking-wider">Maintenance Features:</p>
+                    {mPackage.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-300 text-xs sm:text-sm">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <a
+                  href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+                    `Hi RK Creations! I would like to inquire about monthly website maintenance for ${mPackage.planFor} (${mPackage.price}/mo).`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <button className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer">
+                    <FaWhatsapp className="text-green-400" />
+                    Inquire Maintenance
+                  </button>
+                </a>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Interactive Custom Package Calculator */}
@@ -324,8 +459,8 @@ export default function PricingSection() {
 
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col items-center">
             <Sparkles className="w-8 h-8 text-purple-400 mb-3" />
-            <h4 className="text-white font-bold text-base mb-1">Free Ongoing Support</h4>
-            <p className="text-gray-400 text-xs">Dedicated technical support to help you scale seamlessly.</p>
+            <h4 className="text-white font-bold text-base mb-1">Free Initial Support</h4>
+            <p className="text-gray-400 text-xs">Included free support period with every plan before monthly maintenance.</p>
           </div>
         </div>
       </div>
